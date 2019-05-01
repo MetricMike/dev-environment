@@ -1,0 +1,17 @@
+---
+
+- name: developer.yml
+  hosts: localhost
+  tasks:
+    - name: Ensure asdf repo is present
+      git:
+        repo: 'https://github.com/asdf-vm/asdf.git'
+        dest: '~/.asdf'
+        update: yes
+    
+    - name: Update ASDF
+      shell: /bin/bash -ic 'asdf update'
+
+    - name: Echo test ansible
+      debug:
+        msg: "System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
