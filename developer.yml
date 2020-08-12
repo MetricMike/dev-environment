@@ -67,4 +67,4 @@
 
     # Java's special, because of course
     - name: Install/active latest java
-      shell: /bin/bash -lc "asdf install java $(asdf latest java corretto-8); asdf global java $(asdf latest java corretto-8)"
+      shell: /bin/bash -lc "asdf install java $(asdf latest java corretto-11); asdf global java $(asdf latest java corretto-11)"
