@@ -7,11 +7,64 @@
       git:
         repo: 'https://github.com/asdf-vm/asdf.git'
         dest: '~/.asdf'
-        update: yes
     
     - name: Update ASDF
-      shell: /bin/bash -ic 'asdf update'
+      shell: /bin/bash -lc 'asdf update'
 
-    - name: Echo test ansible
-      debug:
-        msg: "System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
+    - name: Get ASDF versions
+      shell: /bin/bash -lc 'asdf current'
+      register: asdf_versions
+
+    - name: Load bash aliases
+      copy:
+        src: aliases.sh
+        dest: "~/.startup.d/aliases.sh"
+        mode: '0644'
+
+    - name: Load ansible config
+      copy:
+        src: ansible.sh
+        dest: "~/.startup.d/ansible.sh"
+        mode: '0644'
+
+    - debug:
+        var: asdf_versions.stderr_lines
+
+    - name: Install mitogen
+      pip:
+        name: mitogen
+
+    - name: Load ASDF plugins
+      shell: /bin/bash -lc "asdf plugin-add {{ item }}"
+      loop:
+        - golang
+        - gradle
+        - java
+        - java
+        - maven
+        - nodejs
+        - packer
+        - python
+        - ruby
+        - terraform
+      failed_when: false
+
+    - name: Import Nodejs OpenPGP keyring
+      shell: /bin/bash -lc '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
+
+    - name: Install/activate latest versions
+      shell: /bin/bash -lc "asdf install {{ item }} $(asdf latest {{ item }}); asdf global {{ item }} $(asdf latest {{ item }})"
+      loop:
+        - golang
+        - gradle
+        - maven
+        - nodejs
+        - packer
+        - python
+        - ruby
+        - terraform
+      failed_when: false
+
+    # Java's special, because of course
+    - name: Install/active latest java
+      shell: /bin/bash -lc "asdf install java $(asdf latest java corretto-8); asdf global java $(asdf latest java corretto-8)"

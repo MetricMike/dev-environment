@@ -13,7 +13,7 @@ sudo apt -y dist-upgrade
 sudo apt -y autoremove
 sudo apt -y autoclean
 
-sudo apt -y install curl git
+sudo apt -y install curl git tree jq unzip dirmngr gpg
 
 if [[ -d "${HOME}/.asdf" ]];
 then
@@ -95,15 +95,17 @@ grep -qxF "${SHUTDOWN_INIT}" ${HOME}/.bash_logout || \
 echo -e "${SHUTDOWN_INIT}" >> ${HOME}/.bash_logout
 
 # Build environment for python
-sudo apt -y install make build-essential libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev \
-libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+sudo apt -y install \
+autoconf bison build-essential curl libbz2-dev libdb-dev libffi-dev \
+libgdbm-dev libgdbm6 liblzma-dev libncurses5-dev libreadline-dev \
+libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev libyaml-dev \
+llvm make tk-dev wget xz-utils zlib1g-dev
 
 source ${HOME}/.bashrc
 source ${HOME}/.startup.d/asdf.sh
 
 asdf plugin-add python
-asdf install python latest:3
+asdf install python $(asdf latest python)
 asdf global python $(asdf latest python)
 
 pip install -U pip ansible
