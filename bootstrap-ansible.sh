@@ -50,7 +50,7 @@ mkdir -p ${HOME}/.shutdown.d
 #
 # EOF
 
-cat <<-'EOF' > ${HOME}/.startup.d/asdf.sh
+cat <<-'EOF' > ${HOME}/.startup.d/0_asdf.sh
 #! /bin/bash
 
 source ${HOME}/.asdf/asdf.sh

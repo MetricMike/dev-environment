@@ -3,17 +3,8 @@
 - name: developer.yml
   hosts: localhost
   tasks:
-    - name: Ensure asdf repo is present
-      git:
-        repo: 'https://github.com/asdf-vm/asdf.git'
-        dest: '~/.asdf'
-    
-    - name: Update ASDF
-      shell: /bin/bash -lc 'asdf update'
 
-    - name: Get ASDF versions
-      shell: /bin/bash -lc 'asdf current'
-      register: asdf_versions
+    # - meta: end_play
 
     - name: Load bash aliases
       copy:
@@ -27,44 +18,11 @@
         dest: "~/.startup.d/ansible.sh"
         mode: '0644'
 
-    - debug:
-        var: asdf_versions.stderr_lines
-
+    # Use this until https://github.com/dw/mitogen/pull/739 gets merged
     - name: Install mitogen
       pip:
-        name: mitogen
+        name: git+https://github.com/MetricMike/mitogen.git@master
+        state: latest
 
-    - name: Load ASDF plugins
-      shell: /bin/bash -lc "asdf plugin-add {{ item }}"
-      loop:
-        - golang
-        - gradle
-        - java
-        - java
-        - maven
-        - nodejs
-        - packer
-        - python
-        - ruby
-        - terraform
-      failed_when: false
-
-    - name: Import Nodejs OpenPGP keyring
-      shell: /bin/bash -lc '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
-
-    - name: Install/activate latest versions
-      shell: /bin/bash -lc "asdf install {{ item }} $(asdf latest {{ item }}); asdf global {{ item }} $(asdf latest {{ item }})"
-      loop:
-        - golang
-        - gradle
-        - maven
-        - nodejs
-        - packer
-        - python
-        - ruby
-        - terraform
-      failed_when: false
-
-    # Java's special, because of course
-    - name: Install/active latest java
-      shell: /bin/bash -lc "asdf install java $(asdf latest java corretto-11); asdf global java $(asdf latest java corretto-11)"
+    - include_role:
+        name: languages

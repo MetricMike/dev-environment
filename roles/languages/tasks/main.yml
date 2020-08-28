@@ -1,0 +1,10 @@
+---
+
+- include_tasks: asdf.yml
+
+- name: Import Nodejs OpenPGP keyring
+  shell: /bin/bash -lc '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
+
+- include_tasks: languages.yml
+
+- include_tasks: git.yml

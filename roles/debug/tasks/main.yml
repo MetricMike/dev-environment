@@ -1,0 +1,8 @@
+---
+
+- name: Get ASDF versions
+  shell: /bin/bash -lc 'asdf current'
+  register: asdf_versions
+
+- debug:
+    var: asdf_versions.stderr_lines

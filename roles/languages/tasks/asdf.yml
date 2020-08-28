@@ -1,0 +1,16 @@
+---
+
+- name: Ensure asdf repo is present
+  git:
+    repo: 'https://github.com/asdf-vm/asdf.git'
+    dest: '~/.asdf'
+
+- name: Update ASDF
+  shell: /bin/bash -lc 'asdf update'
+
+- name: Load ASDF plugins
+  shell: /bin/bash -lc "asdf plugin-add {{ item }}"
+  loop: "{{ languages + [ 'java' ] }}"
+  failed_when: false
+
+- include_tasks: env.yml

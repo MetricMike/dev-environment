@@ -1,0 +1,13 @@
+# Java doesn't quite follow the same pattern as other asdf plugins, so it gets
+java_version: corretto-11
+languages:
+  - dotnet-core
+  - golang
+  - gradle
+  - maven
+  - nodejs
+  - packer
+  - python
+  - ruby
+  - terraform
+  - vagrant
