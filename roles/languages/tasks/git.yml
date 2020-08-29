@@ -5,3 +5,19 @@
     name: alias.lg
     scope: global
     value: log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+- name: Signing
+  git_config:
+    name: commit.gpgsign
+    scope: global
+    value: true
+
+- name: Identity
+  git_config:
+    name: "user.{{ item.name }}"
+    scope: global
+    value: "{{ item.value }}"
+  loop:
+    - { name: name, value: "Michael Weigle" }
+    - { name: email, value: "michael.weigle@gmail.com" }
+    - { name: signingkey, value: "CC3E16C90D17E632" }

@@ -108,9 +108,20 @@ asdf plugin-add python
 asdf install python $(asdf latest python)
 asdf global python $(asdf latest python)
 
-pip install -U pip ansible
+pip install -U pip ansible mitogen
 
 asdf reshim python
+
+# Install python-apt package to venv
+mkdir -p ${HOME}/projects
+pushd ${HOME}/projects
+git clone git://git.launchpad.net/python-apt
+cd python-apt
+git checkout 2.1.3
+sudo build-dep -y python-apt/
+ASDF_SITE_PACKAGES=$(asdf where python)/lib/python3.8/site-packages/
+cp -r python-apt/build/lib.linux-x86_64-3.8/* ${ASDF_SITE_PACKAGES}
+popd
 
 # Verify
 ansible --version

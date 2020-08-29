@@ -11,3 +11,12 @@ languages:
   - ruby
   - terraform
   - vagrant
+system_packages:
+  - jq
+# Use this until https://github.com/dw/mitogen/pull/739 gets merged
+python_packages:
+  - git+https://github.com/MetricMike/mitogen.git@master
+  - awscli
+node_packages:
+  - mapshaper
+  - diff-so-fancy

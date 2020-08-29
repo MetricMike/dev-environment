@@ -18,11 +18,5 @@
         dest: "~/.startup.d/ansible.sh"
         mode: '0644'
 
-    # Use this until https://github.com/dw/mitogen/pull/739 gets merged
-    - name: Install mitogen
-      pip:
-        name: git+https://github.com/MetricMike/mitogen.git@master
-        state: latest
-
     - include_role:
         name: languages

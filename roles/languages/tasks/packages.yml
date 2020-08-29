@@ -1,0 +1,34 @@
+---
+
+- name: Update/clean/full-upgrade
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400
+    autoclean: yes
+    autoremove: yes
+    upgrade: full
+  become: yes
+
+- name: Update system pacakages
+  apt:
+    name: "*"
+    state: latest
+  become: yes
+
+- name: Install additional system packages
+  apt:
+    name: "{{ system_packages }}"
+    state: latest
+  become: yes
+
+- name: Install python packages
+  pip:
+    name: "{{ python_packages }}"
+    state: latest
+
+- name: Install node packages
+  npm:
+    name: "{{ item }}"
+    global: yes
+    state: latest
+  loop: "{{ node_packages }}"
