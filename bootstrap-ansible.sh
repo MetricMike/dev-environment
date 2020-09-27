@@ -108,19 +108,23 @@ asdf plugin-add python
 asdf install python $(asdf latest python)
 asdf global python $(asdf latest python)
 
-pip install -U pip ansible mitogen
+# pip install -U pip wheel ansible mitogen
+# Use this until https://github.com/dw/mitogen/pull/739 gets merged
+# Lock to 2.9 until mitogen supports ansible 2.10
+pip install -U pip wheel ansible~=2.9.0 git+https://github.com/MetricMike/mitogen.git@master
 
 asdf reshim python
 
 # Install python-apt package to venv
 mkdir -p ${HOME}/projects
 pushd ${HOME}/projects
-git clone git://git.launchpad.net/python-apt
+git clone git://git.launchpad.net/python-apt &> /dev/null
 cd python-apt
 git checkout 2.1.3
-sudo build-dep -y python-apt/
+sudo apt build-dep -y ./
+python setup.py build
 ASDF_SITE_PACKAGES=$(asdf where python)/lib/python3.8/site-packages/
-cp -r python-apt/build/lib.linux-x86_64-3.8/* ${ASDF_SITE_PACKAGES}
+cp -r build/lib.linux-x86_64-3.8/* ${ASDF_SITE_PACKAGES}
 popd
 
 # Verify
