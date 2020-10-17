@@ -115,18 +115,6 @@ pip install -U pip wheel ansible~=2.9.0 git+https://github.com/MetricMike/mitoge
 
 asdf reshim python
 
-# Install python-apt package to venv
-mkdir -p ${HOME}/projects
-pushd ${HOME}/projects
-git clone git://git.launchpad.net/python-apt &> /dev/null
-cd python-apt
-git checkout 2.1.3
-sudo apt build-dep -y ./
-python setup.py build
-ASDF_SITE_PACKAGES=$(asdf where python)/lib/python3.8/site-packages/
-cp -r build/lib.linux-x86_64-3.8/* ${ASDF_SITE_PACKAGES}
-popd
-
 # Verify
 ansible --version
 
