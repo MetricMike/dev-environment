@@ -27,28 +27,9 @@ fi
 mkdir -p ${HOME}/.startup.d
 mkdir -p ${HOME}/.shutdown.d
 
-# cat <<-'EOF' > ${HOME}/.startup.d/ssh.sh
-# #! /bin/bash
-#
-# if [[ ! -S ${HOME}/.ssh/ssh_auth_sock ]]; then
-#     eval `ssh-agent`
-#     ln -sf "$SSH_AUTH_SOCK" ${HOME}/.ssh/ssh_auth_sock
-# fi
-#
-# export SSH_AUTH_SOCK=${HOME}/.ssh/ssh_auth_sock
-# ssh-add -l > /dev/null || ssh-add ${HOME}/.ssh/mkey_big
-#
-# EOF
-
-# cat <<-'EOF' > ${HOME}/.shutdown.d/ssh.sh
-# #! /bin/bash
-#
-# if [[ -n "$SSH_AUTH_SOCK" ]] ; then
-#   eval `/usr/bin/ssh-agent -k`
-#   rm ${HOME}/.ssh/ssh_auth_sock
-# fi
-#
-# EOF
+# gpg import /mnt/i/Users/Michael/Dropbox/mGPG_private.key
+# cp /mnt/i/Users/Michael/Dropbox/mkey_big ~/.ssh/id_rsa ; chmod 0600 ~/.ssh/id_rsa
+# cp /mnt/i/Users/Michael/Dropbox/mkey_big.pub ~/.ssh/id_rsa.pub
 
 cat <<-'EOF' > ${HOME}/.startup.d/0_asdf.sh
 #! /bin/bash
