@@ -1,0 +1,9 @@
+---
+
+- name: debug.yml
+  hosts: localhost
+  tasks:
+
+    # - meta: end_play
+    - include_role:
+        name: debug

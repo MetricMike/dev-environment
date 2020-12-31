@@ -13,4 +13,7 @@
   loop: "{{ languages + [ 'java' ] }}"
   failed_when: false
 
+- name: Update ASDF plugins
+  shell: /bin/bash -lc 'asdf plugin update --all'
+
 - include_tasks: env.yml

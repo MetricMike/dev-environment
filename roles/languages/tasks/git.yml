@@ -1,26 +1,13 @@
 ---
+- include_vars: gitconfig.yml
 
-- name: Pretty Log
+- name: Config
   git_config:
-    name: alias.lg
+    name: "{{ item.0.key }}.{{ item.1.key }}"
     scope: global
-    value: log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
-- name: Signing
-  git_config:
-    name: commit.gpgsign
-    scope: global
-    value: true
-
-- name: Identity
-  git_config:
-    name: "user.{{ item.name }}"
-    scope: global
-    value: "{{ item.value }}"
+    value: "{{ item.1.value }}"
   loop:
-    - { name: name, value: "Michael Weigle" }
-    - { name: email, value: "michael.weigle@gmail.com" }
-    - { name: signingkey, value: "CC3E16C90D17E632" }
+    - "{{ git | subelements('entries') }}"
 
 - name: GH CLI - add apt key
   apt_key:

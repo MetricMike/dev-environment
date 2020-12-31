@@ -1,8 +1,13 @@
 ---
 
-- name: Get ASDF versions
-  shell: /bin/bash -lc 'asdf current'
-  register: asdf_versions
+- include_vars: gitconfig.yml
 
 - debug:
-    var: asdf_versions.stderr_lines
+    var: "{{ item['key'] }}"
+  loop:
+    - "{{ git | dict2items }}"
+
+# - debug:
+#     var: "{{ item.value }}"
+#   loop:
+#     - "{{ git }}"

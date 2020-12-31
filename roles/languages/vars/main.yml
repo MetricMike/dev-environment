@@ -10,7 +10,7 @@ languages:
   - python
   - ruby
   - terraform
-  - vagrant
+  # - vagrant
 system_packages:
   - jq
 # Use this until https://github.com/dw/mitogen/pull/739 gets merged
