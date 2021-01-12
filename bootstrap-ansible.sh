@@ -18,6 +18,7 @@ sudo apt -y install curl git tree jq unzip dirmngr gpg
 if [[ -d "${HOME}/.asdf" ]];
 then
     asdf update
+    asdf plugin update --all
 else
     git clone https://github.com/asdf-vm/asdf.git ${HOME}/.asdf
 fi
