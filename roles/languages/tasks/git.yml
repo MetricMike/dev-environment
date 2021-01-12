@@ -3,11 +3,10 @@
 
 - name: Config
   git_config:
-    name: "{{ item.0.key }}.{{ item.1.key }}"
+    name: "{{ item.0.key }}.{{ item.1.keys() | list | first }}"
     scope: global
-    value: "{{ item.1.value }}"
-  loop:
-    - "{{ git | subelements('entries') }}"
+    value: "{{ item.1.values() | list | first }}"
+  loop: "{{ git | dict2items | subelements('value') }}"
 
 - name: GH CLI - add apt key
   apt_key:

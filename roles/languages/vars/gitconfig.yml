@@ -1,15 +1,16 @@
 git:
-  aliases:
-    plog: log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    c: commit
-    d: diff
-    dc: diff --cached
-    sw: switch
+  alias:
+    - plog: log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    - c: commit
+    - d: diff
+    - dc: diff --cached
+    - st: status
+    - sw: switch
   commit:
-    gpgsign: true
+    - gpgsign: true
   user:
-    name: Michael Weigle
-    email: michael.weigle@gmail.com
-    signingkey: CC3E16C90D17E632
+    - name: Michael Weigle
+    - email: michael.weigle@gmail.com
+    - signingkey: CC3E16C90D17E632
   help:
-    autocorrect: 20
+    - autocorrect: 20
