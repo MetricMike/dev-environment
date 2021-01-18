@@ -8,6 +8,8 @@ git:
     - sw: switch
   commit:
     - gpgsign: true
+  core:
+    - editor: code --wait
   user:
     - name: Michael Weigle
     - email: michael.weigle@gmail.com
