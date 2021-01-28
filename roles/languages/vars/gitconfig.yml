@@ -8,7 +8,7 @@ git:
     - st: status
     - sw: switch
   commit:
-    - gpgsign: true
+    - gpgsign: "true"
   core:
     - editor: code --wait
   user:

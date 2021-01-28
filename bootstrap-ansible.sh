@@ -94,7 +94,7 @@ pip install -U pip wheel ansible \
 `# Use this until mitogen 0.3.0 is released (master tracks 0.3.0)` \
 git+https://github.com/mitogen-hq/mitogen.git@master \
 `# ASDF python can't see the python-apt system package, so install it directly` \
-`# pip is 0.7.8, we need at least 2.1.3+, but master's fairly stable` \
+`# pypi is 0.7.8, we need at least 2.1.3+, but master's fairly stable` \
 git+https://salsa.debian.org/apt-team/python-apt.git@master
 
 asdf reshim python
