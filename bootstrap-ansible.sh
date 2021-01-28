@@ -84,33 +84,23 @@ libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev libyaml-dev \
 llvm make tk-dev wget xz-utils zlib1g-dev
 
 source ${HOME}/.bashrc
-source ${HOME}/.startup.d/asdf.sh
+source ${HOME}/.startup.d/0_asdf.sh
 
 asdf plugin-add python
 asdf install python $(asdf latest python)
 asdf global python $(asdf latest python)
 
-# pip install -U pip wheel ansible mitogen
-# Use this until https://github.com/dw/mitogen/pull/739 gets merged
-# Lock to 2.9 until mitogen supports ansible 2.10
-pip install -U pip wheel ansible~=2.9.0 git+https://github.com/MetricMike/mitogen.git@master
+pip install -U pip wheel ansible \
+`# Use this until mitogen 0.3.0 is released (master tracks 0.3.0)` \
+git+https://github.com/mitogen-hq/mitogen.git@master \
+`# ASDF python can't see the python-apt system package, so install it directly` \
+`# pip is 0.7.8, we need at least 2.1.3+, but master's fairly stable` \
+git+https://salsa.debian.org/apt-team/python-apt.git@master
 
 asdf reshim python
-
-# Install python-apt package to venv (unclear why this is needed)
-mkdir -p ${HOME}/projects
-pushd ${HOME}/projects
-git clone git://git.launchpad.net/python-apt &> /dev/null
-cd python-apt
-git checkout 2.1.3
-sudo apt build-dep -y ./
-python setup.py build
-PYTHON_MAJ_MIN=$(asdf current python | awk '{print $2}' | awk -F \. '{print $1"."$2}')
-ASDF_SITE_PACKAGES=$(asdf where python)/lib/python${PYTHON_MAJ_MIN}/site-packages/
-cp -r build/lib.linux-x86_64-${PYTHON_MAJ_MIN}/* ${ASDF_SITE_PACKAGES}
-popd
 
 # Verify
 ansible --version
 
-exec ${SHELL} -l
+echo -e "\nFinished bootstrapping."
+echo -e "Please exit and restart your shell...\n"

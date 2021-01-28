@@ -13,9 +13,9 @@ languages:
   # - vagrant
 system_packages:
   - jq
-# Use this until https://github.com/dw/mitogen/pull/739 gets merged
+# Use this until mitogen 0.3.0 is released (master tracks 0.3.0)
 python_packages:
-  - git+https://github.com/MetricMike/mitogen.git@master
+  - git+https://github.com/mitogen-hq/mitogen.git@master
   - awscli
 node_packages:
   - mapshaper

@@ -3,24 +3,19 @@
 - name: debug.yml
   hosts: localhost
   gather_facts: no
-  vars:
-    git:
-      alias:
-        - plog: log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-        - c: commit
-        - d: diff
-        - dc: diff --cached
-        - sw: switch
-      commit:
-        - gpgsign: true
-      user:
-        - name: Michael Weigle
-        - email: michael.weigle@gmail.com
-        - signingkey: CC3E16C90D17E632
-      help:
-        - autocorrect: 20
 
   tasks:
-  - debug:
-      msg: "{{ item.0.key }}.{{ item.1.keys() | list | first }}"
-    loop: "{{ git | dict2items | subelements('value') }}"
+    - name: Update/clean/full-upgrade
+      apt:
+        update_cache: yes
+        cache_valid_time: 86400
+        autoclean: yes
+        autoremove: yes
+        upgrade: full
+      become: yes
+
+    - name: Update system pacakages
+      apt:
+        name: "*"
+        state: latest
+      become: yes
