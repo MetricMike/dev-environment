@@ -1,6 +1,7 @@
 # Java doesn't quite follow the same pattern as other asdf plugins, so it gets
 java_version: corretto-11
-languages:
+tools:
+  - awscli
   - dotnet-core
   - golang
   - gradle
@@ -10,7 +11,7 @@ languages:
   - python
   - ruby
   - terraform
-  # - vagrant
+  - vagrant
 system_packages:
   - jq
 python_packages:

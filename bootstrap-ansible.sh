@@ -6,7 +6,7 @@ RELEASE=$(lsb_release -sc)
 sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu ${RELEASE} universe multiverse"
 sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu ${RELEASE}-updates universe multiverse"
 
-# Install asdf and only the bare minimum required for ansible 3
+# Install asdf and only the bare minimum required for ansible
 sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y dist-upgrade

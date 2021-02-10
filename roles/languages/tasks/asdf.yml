@@ -10,7 +10,7 @@
 
 - name: Load ASDF plugins
   shell: /bin/bash -lc "asdf plugin-add {{ item }}"
-  loop: "{{ languages + [ 'java' ] }}"
+  loop: "{{ tools + [ 'java' ] }}"
   failed_when: false
 
 - name: Update ASDF plugins
