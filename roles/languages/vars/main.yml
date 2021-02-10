@@ -11,7 +11,7 @@ tools:
   - python
   - ruby
   - terraform
-  - vagrant
+  # - vagrant
 system_packages:
   - jq
 python_packages:
