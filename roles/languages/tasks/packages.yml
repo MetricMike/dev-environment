@@ -32,3 +32,9 @@
     global: yes
     state: latest
   loop: "{{ node_packages }}"
+
+- name: Reshim node and python after package installs
+  shell: /bin/bash -lc "asdf reshim {{ item }}"
+  loop:
+    - python
+    - nodejs
