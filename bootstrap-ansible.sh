@@ -90,12 +90,14 @@ asdf plugin-add python
 asdf install python $(asdf latest python)
 asdf global python $(asdf latest python)
 
-pip install -U pip wheel ansible \
+pip install -U pip wheel \
+`#mitogen only supports up to ansible 2.10 for now` \
+ansible~=2.10 \
 `# Use this until mitogen 0.3.0 is released (master tracks 0.3.0)` \
 git+https://github.com/mitogen-hq/mitogen.git@master \
 `# ASDF python can't see the python-apt system package, so install it directly` \
-`# pypi is 0.7.8, we need at least 2.1.3+, but master's fairly stable` \
-git+https://salsa.debian.org/apt-team/python-apt.git@master
+`# pypi is 0.7.8, we need at least 2.1.3+, but main's fairly stable` \
+git+https://salsa.debian.org/apt-team/python-apt.git@main
 
 asdf reshim python
 
@@ -103,9 +105,9 @@ asdf reshim python
 ansible --version
 
 # Install vagrant manually
-curl -OJ https://releases.hashicorp.com/vagrant/2.2.14/vagrant_2.2.14_x86_64.deb
-sudo apt install ./vagrant_2.2.14_x86_64.deb
-rm ./vagrant_2.2.14_x86_64.deb
+# curl -OJ https://releases.hashicorp.com/vagrant/2.2.14/vagrant_2.2.14_x86_64.deb
+# sudo apt install ./vagrant_2.2.14_x86_64.deb
+# rm ./vagrant_2.2.14_x86_64.deb
 
 echo -e "\nFinished bootstrapping."
 echo -e "Please exit and restart your shell...\n"
