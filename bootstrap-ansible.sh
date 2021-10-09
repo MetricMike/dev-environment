@@ -76,6 +76,12 @@ SHUTDOWN_INIT='source ${HOME}/.shutdown.sh'
 grep -qxF "${SHUTDOWN_INIT}" ${HOME}/.bash_logout || \
 echo -e "${SHUTDOWN_INIT}" >> ${HOME}/.bash_logout
 
+cat <<-'EOF' > /etc/sudoers.d/mm_pwdless
+
+metricmike ALL=NOPASSWD: ALL
+
+EOF
+
 # Build environment for python
 sudo apt -y install \
 autoconf bison build-essential curl libbz2-dev libdb-dev libffi-dev \
