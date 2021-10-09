@@ -13,6 +13,7 @@ tools:
   - terraform
 system_packages:
   - jq
+  - vagrant
 python_packages:
   # Use this until mitogen 0.3.0 is released (master tracks 0.3.0)
   - git+https://github.com/mitogen-hq/mitogen.git@master
