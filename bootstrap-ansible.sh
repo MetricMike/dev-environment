@@ -110,10 +110,5 @@ asdf reshim python
 # Verify
 ansible --version
 
-# Install vagrant manually
-# curl -OJ https://releases.hashicorp.com/vagrant/2.2.14/vagrant_2.2.14_x86_64.deb
-# sudo apt install ./vagrant_2.2.14_x86_64.deb
-# rm ./vagrant_2.2.14_x86_64.deb
-
 echo -e "\nFinished bootstrapping."
 echo -e "Please exit and restart your shell...\n"
