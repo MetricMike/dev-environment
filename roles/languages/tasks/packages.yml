@@ -25,16 +25,28 @@
     state: latest
   become: yes
 
+- name: Show system packages to install
+  debug:
+    msg: "system_packages: {{ system_packages }}"
+
 - name: Install additional system packages
   apt:
     name: "{{ system_packages }}"
     state: latest
   become: yes
 
+- name: Show python packages to install
+  debug:
+    msg: "python_packages: {{ python_packages }}"
+
 - name: Install python packages
   pip:
     name: "{{ python_packages }}"
     state: latest
+
+- name: Show node packages to install
+  debug:
+    msg: "node_packages: {{ node_packages }}"
 
 - name: Install node packages
   npm:
