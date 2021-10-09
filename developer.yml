@@ -6,17 +6,5 @@
 
     # - meta: end_play
 
-    - name: Load bash aliases
-      copy:
-        src: aliases.sh
-        dest: "~/.startup.d/aliases.sh"
-        mode: '0644'
-
-    - name: Load ansible config
-      copy:
-        src: ansible.sh
-        dest: "~/.startup.d/ansible.sh"
-        mode: '0644'
-
     - include_role:
         name: languages
