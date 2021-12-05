@@ -11,6 +11,9 @@
   shell: /bin/bash -lc "asdf install java $(asdf latest java {{ java_version }}); asdf global java $(asdf latest java {{ java_version }})"
   failed_when: false
 
+- name: Set stable path for JAVA_HOME for other consumers (vscode-java)
+  shell: /bin/bash -lc "ln -snf $(asdf where java) ~/java_home"
+
 - name: Install/activate latest Powershell
   shell: /bin/bash -lc "dotnet tool install --global PowerShell"
   failed_when: false

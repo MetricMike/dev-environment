@@ -1,5 +1,5 @@
 # Java doesn't quite follow the same pattern as other asdf plugins, so it gets
-java_version: corretto-11
+java_version: openjdk
 tools:
   - awscli
   - dotnet-core
