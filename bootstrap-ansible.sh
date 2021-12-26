@@ -96,11 +96,14 @@ asdf plugin-add python
 asdf install python $(asdf latest python)
 asdf global python $(asdf latest python)
 
-pip install -U pip wheel \
-`#mitogen only supports up to ansible 2.10 for now` \
+# Update pip components first
+pip install -U pip wheel
+pip install -U \
+`#mitogen 0.2.x supports ansible < 2.10` \
+`#mitogen 0.3.0 supports ansible = 2.10` \
+`#mitogen 0.3.1 supports ansible < 2.12` \
 ansible~=2.10 \
-`# Use this until mitogen 0.3.0 is released (master tracks 0.3.0)` \
-git+https://github.com/mitogen-hq/mitogen.git@master \
+mitogen~=0.3.0 \
 `# ASDF python can't see the python-apt system package, so install it directly` \
 `# pypi is 0.7.8, we need at least 2.1.3+, but main's fairly stable` \
 git+https://salsa.debian.org/apt-team/python-apt.git@main
