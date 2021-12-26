@@ -1,5 +1,4 @@
 ---
-
 # Java and PowerShell don't quite follow the same pattern as other asdf plugins, so they're added separately
 
 - name: Install/activate latest versions
@@ -18,8 +17,7 @@
   shell: /bin/bash -lc "dotnet tool install --global PowerShell"
   failed_when: false
 
-# Remove older asdf versions
-# - name: Remove older asdf versions
-#   shell: /bin/bash -lc "asdf uninstall {{ item }} where.not $( asdf latest {{ item }});"
-#   loop: "{{ tools + [ 'java' ] }}"
-#   failed_when: false
+# This is a custom-script that only lives on mBook, so careful
+- name: Remove older asdf versions
+  shell: /bin/bash -lc "asdf-prune"
+  failed_when: false
