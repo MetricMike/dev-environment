@@ -1,9 +1,12 @@
 ---
 
-- include_tasks: asdf.yml
-
-- include_tasks: languages.yml
-
 - include_tasks: git.yml
 
 - include_tasks: packages.yml
+
+- include_tasks: prompt.yml
+
+# Must run at the end so we don't remove existing tools before we're done
+- name: Remove older asdf versions
+  shell: /bin/bash -lc "asdf-prune"
+  failed_when: false

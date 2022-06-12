@@ -1,0 +1,14 @@
+# Java doesn't quite follow the same pattern as other asdf plugins, so it gets
+java_version: openjdk
+tools:
+  - awscli
+  - dotnet-core
+  - git
+  - golang
+  - gradle
+  - maven
+  - nodejs
+  - packer
+  - python
+  - ruby
+  - terraform

@@ -1,20 +1,9 @@
-# Java doesn't quite follow the same pattern as other asdf plugins, so it gets
-java_version: openjdk
-tools:
-  - awscli
-  - dotnet-core
-  - golang
-  - gradle
-  - maven
-  - nodejs
-  - packer
-  - python
-  - ruby
-  - terraform
 system_packages:
   - jq
   - vagrant
 python_packages:
+  - pip
+  - wheel
   # mitogen 0.2.x supports ansible < 2.10
   # mitogen 0.3.0 supports ansible = 2.10
   # mitogen 0.3.1 supports ansible < 2.12
@@ -28,3 +17,9 @@ node_packages:
   - mapshaper
   - diff-so-fancy
   - yarn
+  - typescript
+  - "@angular/cli"
+homebrew_taps:
+  - jandedobbeleer/oh-my-posh
+homebrew_packages:
+  - jandedobbeleer/oh-my-posh/oh-my-posh

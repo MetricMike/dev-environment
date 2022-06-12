@@ -60,3 +60,16 @@
   loop:
     - python
     - nodejs
+
+# Update homebrew and upgrade all packages
+- homebrew:
+    update_homebrew: yes
+    upgrade_all: yes
+
+- homebrew_tap:
+    name: "{{ homebrew_taps }}"
+    state: present
+
+- homebrew:
+    name: "{{ homebrew_packages }}"
+    state: latest

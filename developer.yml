@@ -7,4 +7,9 @@
     # - meta: end_play
 
     - include_role:
-        name: languages
+        name: "{{ role_item }}"
+      loop:
+       - asdf
+       - languages
+      loop_control:
+        loop_var: role_item

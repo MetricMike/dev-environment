@@ -6,14 +6,26 @@ RELEASE=$(lsb_release -sc)
 sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu ${RELEASE} universe multiverse"
 sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu ${RELEASE}-updates universe multiverse"
 
-# Install asdf and only the bare minimum required for ansible
+# Install asdf and only the bare minimum required for ansible, asdf, brew
 sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y dist-upgrade
 sudo apt -y autoremove
 sudo apt -y autoclean
 
-sudo apt -y install curl git tree jq unzip dirmngr gpg
+sudo apt -y install \
+build-essential curl dirmngr file git gpg \
+jq procps tree unzip
+
+# Add a local bin dir
+mkdir -p "${HOME}/.bin"
+
+if [[ -d "${HOME}/.linuxbrew" ]];
+then
+    brew update
+else
+    NONINTERACTIVE=1 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+fi
 
 if [[ -d "${HOME}/.asdf" ]];
 then
@@ -31,6 +43,14 @@ mkdir -p ${HOME}/.shutdown.d
 # gpg import /mnt/i/Users/Michael/Dropbox/mGPG_private.key
 # cp /mnt/i/Users/Michael/Dropbox/mkey_big ~/.ssh/id_rsa ; chmod 0600 ~/.ssh/id_rsa
 # cp /mnt/i/Users/Michael/Dropbox/mkey_big.pub ~/.ssh/id_rsa.pub
+
+
+cat <<-'EOF' > ${HOME}/.startup.d/0_brew.sh
+#! /bin/bash
+
+eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"
+
+EOF
 
 cat <<-'EOF' > ${HOME}/.startup.d/0_asdf.sh
 #! /bin/bash
@@ -84,7 +104,7 @@ EOF
 
 # Build environment for python
 sudo apt -y install \
-autoconf bison build-essential curl libbz2-dev libdb-dev libffi-dev \
+autoconf bison build-essential libcurl4-openssl-dev libbz2-dev libdb-dev libffi-dev \
 libgdbm-dev libgdbm6 liblzma-dev libncurses5-dev libreadline-dev \
 libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev libyaml-dev \
 llvm make tk-dev wget xz-utils zlib1g-dev
@@ -112,6 +132,8 @@ asdf reshim python
 
 # Verify
 ansible --version
+
+ansible-playbook developer.yml
 
 echo -e "\nFinished bootstrapping."
 echo -e "Please exit and restart your shell...\n"

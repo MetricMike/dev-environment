@@ -1,0 +1,44 @@
+---
+
+# Using my repo while working on https://github.com/asdf-vm/asdf/issues/866, also ignore workspace conflicts
+- name: Ensure asdf repo is present
+  git:
+    repo: 'https://github.com/MetricMike/asdf.git'
+    dest: '~/.asdf'
+  failed_when: false
+
+- name: Update ASDF
+  shell: /bin/bash -lc 'asdf update --head'
+
+- name: Load ASDF plugins
+  shell: /bin/bash -lc "asdf plugin-add {{ item }}"
+  loop: "{{ tools + [ 'java' ] }}"
+  failed_when: false
+
+- name: Update ASDF plugins
+  shell: /bin/bash -lc 'asdf plugin update --all'
+
+- name: "Ensure local bin directory exists"
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - ~/.bin
+
+- name: Add extra commands
+  copy:
+    src: "{{ item }}.sh"
+    dest: "~/.bin/{{ item }}"
+    mode: 0755
+  loop:
+    - asdf-prune
+
+- name: Add bash configurations
+  copy:
+    src: "{{ item }}"
+    dest: "~/.startup.d/{{ item }}"
+    mode: 0644
+  loop:
+    - 0_asdf.sh
+
+- include_tasks: plugins.yml
