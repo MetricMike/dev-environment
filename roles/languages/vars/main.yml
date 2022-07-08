@@ -1,5 +1,4 @@
 system_packages:
-  - jq
 python_packages:
   - pip
   - wheel

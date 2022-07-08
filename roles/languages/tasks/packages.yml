@@ -15,35 +15,37 @@
     state: latest
   become: yes
 
-- name: Show system packages to install
-  debug:
-    msg: "system_packages: {{ system_packages }}"
+# - name: Show system packages to install
+#   debug:
+#     msg: "system_packages: {{ system_packages }}"
 
 - name: Install additional system packages
   apt:
     name: "{{ system_packages }}"
     state: latest
   become: yes
+  when: system_packages is iterable
 
-- name: Show python packages to install
-  debug:
-    msg: "python_packages: {{ python_packages }}"
+# - name: Show python packages to install
+#   debug:
+#     msg: "python_packages: {{ python_packages }}"
 
 - name: Install python packages
   pip:
     name: "{{ python_packages }}"
     state: latest
+  when: python_packages is iterable
 
-- name: Show node packages to install
-  debug:
-    msg: "node_packages: {{ node_packages }}"
+# - name: Show node packages to install
+#   debug:
+#     msg: "node_packages: {{ node_packages }}"
 
 - name: Install node packages
   npm:
     name: "{{ item }}"
     global: yes
     state: latest
-  loop: "{{ node_packages }}"
+  loop: "{{ node_packages | default([]) }}"
 
 - name: Reshim node and python after package installs
   shell: /bin/bash -lc "asdf reshim {{ item }}"
@@ -59,7 +61,9 @@
 - homebrew_tap:
     name: "{{ homebrew_taps }}"
     state: present
+  when: homebrew_taps is iterable
 
 - homebrew:
     name: "{{ homebrew_packages }}"
     state: latest
+  when: homebrew_packages is iterable
