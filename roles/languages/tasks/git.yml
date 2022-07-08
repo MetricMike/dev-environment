@@ -7,3 +7,9 @@
     scope: global
     value: "{{ item.1.values() | list | first }}"
   loop: "{{ git | dict2items | subelements('value') }}"
+
+- name: Download autocompletion
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/main/contrib/completion/git-completion.bash
+    dest: ~/.startup.d/1_git-completion.sh
+    mode: u=rw-,g=r--,o=r--
