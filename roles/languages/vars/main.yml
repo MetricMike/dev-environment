@@ -1,6 +1,5 @@
 system_packages:
   - jq
-  - vagrant
 python_packages:
   - pip
   - wheel

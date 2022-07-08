@@ -9,16 +9,6 @@
     upgrade: full
   become: yes
 
-- name: Add Hashicorp Repo signing key
-  apt_key:
-    url: https://apt.releases.hashicorp.com/gpg
-  become: yes
-
-- name: Add Hashicorp Repo
-  apt_repository:
-    repo: "deb https://apt.releases.hashicorp.com {{ ansible_lsb['codename'] }} main"
-  become: yes
-
 - name: Update system pacakages
   apt:
     name: "*"
