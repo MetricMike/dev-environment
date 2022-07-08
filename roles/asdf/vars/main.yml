@@ -4,6 +4,7 @@ tools:
   - awscli
   - dotnet-core
   - git
+  - github-cli
   - golang
   - gradle
   - maven

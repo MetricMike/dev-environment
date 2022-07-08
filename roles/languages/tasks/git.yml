@@ -7,23 +7,3 @@
     scope: global
     value: "{{ item.1.values() | list | first }}"
   loop: "{{ git | dict2items | subelements('value') }}"
-
-- name: GH CLI - add apt key
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: C99B11DEB97541F0
-    state: present
-  become: yes
-
-- name: GH CLI - add repository
-  apt_repository:
-    repo: deb https://cli.github.com/packages focal main
-    state: present
-  become: yes
-
-- name: GH CLI - install gh
-  apt:
-    update_cache: yes
-    name: gh
-    state: latest
-  become: yes
