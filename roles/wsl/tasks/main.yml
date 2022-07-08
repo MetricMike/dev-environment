@@ -1,0 +1,14 @@
+---
+
+- name: Silence login motd
+  file:
+    path: ~/.hushlogin
+    state: touch
+
+- name: Add bash configurations
+  copy:
+    src: "{{ item }}.sh"
+    dest: "~/.startup.d/{{ item }}.sh"
+    mode: 0644
+  loop:
+    - resetclock

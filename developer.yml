@@ -11,5 +11,6 @@
       loop:
        - asdf
        - languages
+       - wsl
       loop_control:
         loop_var: role_item
