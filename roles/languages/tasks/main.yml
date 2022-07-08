@@ -1,10 +1,14 @@
 ---
 
-- include_tasks: git.yml
-
-- include_tasks: packages.yml
-
-- include_tasks: prompt.yml
+- include_tasks:
+    file: "{{ task_item }}.yml"
+  loop:
+    - env
+    - git
+    - packages
+    - prompt
+  loop_control:
+    loop_var: task_item
 
 # Must run at the end so we don't remove existing tools before we're done
 - name: Remove older asdf versions

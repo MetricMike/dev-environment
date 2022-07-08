@@ -1,7 +1,10 @@
 # Java doesn't quite follow the same pattern as other asdf plugins, so it gets
 java_version: openjdk
 tools:
+  - allure
   - awscli
+  - dasel
+  - direnv
   - dotnet-core
   - git
   - github-cli
@@ -14,3 +17,4 @@ tools:
   - python
   - ruby
   - terraform
+  - usql
