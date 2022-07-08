@@ -15,7 +15,7 @@ sudo apt -y autoclean
 
 sudo apt -y install \
 build-essential curl dirmngr file git gpg \
-jq procps tree unzip
+procps tree unzip
 
 # Add a local bin dir
 mkdir -p "${HOME}/.bin"
