@@ -29,7 +29,7 @@
   copy:
     src: "{{ item }}.sh"
     dest: "~/.bin/{{ item }}"
-    mode: 0755
+    mode: u=rwx,g=r-x,o=r-x
   loop:
     - asdf-prune
 
@@ -37,7 +37,7 @@
   copy:
     src: "{{ item }}"
     dest: "~/.startup.d/{{ item }}"
-    mode: 0644
+    mode: u=rw-,g=r--,o=r--
   loop:
     - 0_asdf.sh
 

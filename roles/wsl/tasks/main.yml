@@ -9,6 +9,6 @@
   copy:
     src: "{{ item }}.sh"
     dest: "~/.startup.d/{{ item }}.sh"
-    mode: 0644
+    mode: u=rw-,g=r--,o=r--
   loop:
     - resetclock
