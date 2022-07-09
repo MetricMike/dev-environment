@@ -12,3 +12,13 @@
     mode: u=rw-,g=r--,o=r--
   loop:
     - resetclock
+    - gpg
+
+- name: Add gpg configurations
+  copy:
+    src: "{{ item }}.conf"
+    dest: "~/.gnupg/{{ item }}.conf"
+    mode: u=rw-,g=r--,o=r--
+  loop:
+    - gpg
+    - gpg-agent
