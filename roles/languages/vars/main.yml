@@ -12,11 +12,12 @@ python_packages:
   - git+https://salsa.debian.org/apt-team/python-apt.git@main
   - awscli
 node_packages:
-  - mapshaper
-  - diff-so-fancy
-  - yarn
-  - typescript
   - "@angular/cli"
+  - "@prettier/plugin-xml"
+  - diff-so-fancy
+  - mapshaper
+  - typescript
+  - yarn
 homebrew_taps:
   - jandedobbeleer/oh-my-posh
 homebrew_packages:
