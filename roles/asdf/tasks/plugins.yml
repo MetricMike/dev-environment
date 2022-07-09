@@ -3,7 +3,7 @@
 
 - name: Install/activate latest versions
   shell: /bin/bash -lc "asdf install {{ item }} $(asdf latest {{ item }}); asdf global {{ item }} $(asdf latest {{ item }})"
-  loop: "{{ tools + [ 'java' ] }}"
+  loop: "{{ tools }}"
   failed_when: false
 
 - name: Install/activate latest java
