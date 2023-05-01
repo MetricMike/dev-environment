@@ -3,8 +3,8 @@
 
 # Enable universe repo
 RELEASE=$(lsb_release -sc)
-sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu ${RELEASE} universe multiverse"
-sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu ${RELEASE}-updates universe multiverse"
+sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu ${RELEASE} universe multiverse"
+sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu ${RELEASE}-updates universe multiverse"
 
 # Install asdf and only the bare minimum required for ansible, asdf, brew
 sudo apt -y update
