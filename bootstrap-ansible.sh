@@ -136,4 +136,6 @@ ansible --version
 ansible-playbook developer.yml
 
 echo -e "\nFinished bootstrapping."
-echo -e "Please exit and restart your shell...\n"
+
+unset PROMPT_COMMAND
+exec "${SHELL}" -i
