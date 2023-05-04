@@ -122,7 +122,7 @@ pip install -U \
 `#https://github.com/mitogen-hq/mitogen/blob/master/docs/changelog.rst` \
 `#mitogen 0.3.3 supports ansible <= 5` \
 `#mitogen 0.3.4 supports ansible 6 but is not released yet` \
-ansible~=3.0 \
+ansible~=4.0 \
 mitogen~=0.3.0 \
 `# ASDF python can't see the python-apt system package, so install it directly` \
 `# pypi is 0.7.8, we need at least 2.1.3+, but main's fairly stable` \
