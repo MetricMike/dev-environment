@@ -8,7 +8,6 @@ $DROPBOX=C":\mStore\Dropbox"
 
 cascadia code nf
 https://ohmyposh.dev
-github api token (1yr expiration)
 
 # PowerToys Sync
 
