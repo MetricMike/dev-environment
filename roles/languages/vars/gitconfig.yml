@@ -1,6 +1,6 @@
 git:
   advice:
-    - detachedHead: "false"
+    - detachedHead: false
   alias:
     - lg: log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     - plog: log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -11,15 +11,15 @@ git:
     - st: status
     - sw: switch
   commit:
-    - sign: "true"
-    - gpgSign: "true"
+    - sign: true
+    - gpgSign: true
   core:
     - editor: code --wait
+  help:
+    - autocorrect: 20
   init:
     - defaultBranch: main
   user:
     - name: Michael Weigle
     - email: michael.weigle@gmail.com
     - signingkey: CC3E16C90D17E632
-  help:
-    - autocorrect: 20
