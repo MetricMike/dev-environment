@@ -19,6 +19,9 @@ git:
     - autocorrect: 20
   init:
     - defaultBranch: main
+  push:
+    - default: current
+    - autoSetupRemote: true
   user:
     - name: Michael Weigle
     - email: michael.weigle@gmail.com
