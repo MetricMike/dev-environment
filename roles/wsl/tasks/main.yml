@@ -11,6 +11,7 @@
     dest: "~/.startup.d/{{ item }}.sh"
     mode: u=rw-,g=r--,o=r--
   loop:
+    - 00_locale
     - resetclock
     - gpg
 
