@@ -1,5 +1,4 @@
 ---
-
 - name: Silence login motd
   file:
     path: ~/.hushlogin
@@ -13,13 +12,11 @@
   loop:
     - 00_locale
     - resetclock
-    - gpg
 
-- name: Add gpg configurations
-  copy:
-    src: "{{ item }}.conf"
-    dest: "~/.gnupg/{{ item }}.conf"
-    mode: u=rw-,g=r--,o=r--
+- name: Remove deprecated configurations
+  file:
+    path: "{{ item }}"
+    state: absent
   loop:
-    - gpg
-    - gpg-agent
+    - "~/.startup.d/gpg.sh"
+    - "~/.gnupg"

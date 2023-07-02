@@ -21,4 +21,4 @@ sudo apt install mono-devel mono-dbg
 - I like ubuntu, but AWS and work like RHEL-flavors
 
 ### Updates
-- Get off of ansible 2! (mitogen update)
+

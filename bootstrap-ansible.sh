@@ -14,7 +14,7 @@ sudo apt -y autoremove
 sudo apt -y autoclean
 
 sudo apt -y install \
-build-essential curl dirmngr file git gpg \
+build-essential curl dirmngr file git \
 procps tree unzip
 
 # Add a local bin dir
@@ -40,7 +40,6 @@ fi
 mkdir -p ${HOME}/.startup.d
 mkdir -p ${HOME}/.shutdown.d
 
-# gpg import /mnt/i/Users/Michael/Dropbox/mGPG_private.key
 # cp /mnt/i/Users/Michael/Dropbox/mkey_big ~/.ssh/id_rsa ; chmod 0600 ~/.ssh/id_rsa
 # cp /mnt/i/Users/Michael/Dropbox/mkey_big.pub ~/.ssh/id_rsa.pub
 

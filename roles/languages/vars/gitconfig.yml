@@ -10,8 +10,9 @@ git:
     - dc: diff --cached
     - st: status
     - sw: switch
+  gpg:
+    - format: ssh
   commit:
-    - sign: true
     - gpgSign: true
   core:
     - editor: code --wait
@@ -25,4 +26,4 @@ git:
   user:
     - name: Michael Weigle
     - email: michael.weigle@gmail.com
-    - signingkey: CC3E16C90D17E632
+    - signingkey: ~/.ssh/id_rsa
