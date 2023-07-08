@@ -4,6 +4,19 @@
     path: ~/.hushlogin
     state: touch
 
+- name: Enable chrony to control system clock
+  lineinfile:
+    path: /etc/default/chrony
+    regexp: '^SYNC_IN_CONTAINER'
+    line: SYNC_IN_CONTAINER="yes"
+  become: true
+
+# https://github.com/conda-forge/podman-feedstock/issues/25#issuecomment-1181563537
+- name: Enable shared mount for podman
+  shell: |
+    sudo mount --make-rshared /
+  become: true
+
 - name: Add bash configurations
   copy:
     src: "{{ item }}.sh"
@@ -11,7 +24,6 @@
     mode: u=rw-,g=r--,o=r--
   loop:
     - 00_locale
-    - resetclock
 
 - name: Remove deprecated configurations
   file:

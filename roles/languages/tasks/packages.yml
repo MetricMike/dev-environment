@@ -1,19 +1,18 @@
 ---
-
 - name: Update/clean/full-upgrade
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 86400
-    autoclean: yes
-    autoremove: yes
+    autoclean: true
+    autoremove: true
     upgrade: full
-  become: yes
+  become: true
 
 - name: Update system pacakages
   apt:
     name: "*"
     state: latest
-  become: yes
+  become: true
 
 # - name: Show system packages to install
 #   debug:
@@ -23,7 +22,7 @@
   apt:
     name: "{{ system_packages }}"
     state: latest
-  become: yes
+  become: true
   when: system_packages is iterable
 
 # - name: Show python packages to install
@@ -43,7 +42,7 @@
 - name: Install node packages
   npm:
     name: "{{ item }}"
-    global: yes
+    global: true
     state: latest
   loop: "{{ node_packages | default([]) }}"
 
@@ -55,8 +54,8 @@
 
 # Update homebrew and upgrade all packages
 - homebrew:
-    update_homebrew: yes
-    upgrade_all: yes
+    update_homebrew: true
+    upgrade_all: true
 
 - homebrew_tap:
     name: "{{ homebrew_taps }}"

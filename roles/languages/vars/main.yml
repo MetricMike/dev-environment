@@ -1,4 +1,6 @@
 system_packages:
+  - podman
+  - chrony
 python_packages:
   - pip
   - wheel
