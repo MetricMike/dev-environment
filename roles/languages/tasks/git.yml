@@ -8,6 +8,13 @@
     value: "{{ item.1.values() | list | first }}"
   loop: "{{ git | dict2items | subelements('value') }}"
 
+- name: Signing
+  lineinfile:
+    create: true
+    path: ~/.config/git/allowed_signers
+    regexp: '^michael.weigle@gmail.com'
+    line: "michael.weigle@gmail.com namespaces=\"git\" {{ lookup('url', 'https://github.com/metricmike.keys', split_lines=False) }}"
+
 - name: Download autocompletion
   get_url:
     url: https://raw.githubusercontent.com/git/git/main/contrib/completion/git-completion.bash
