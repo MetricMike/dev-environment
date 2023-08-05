@@ -1,0 +1,10 @@
+[Match]
+Name=eth0
+
+[Link]
+# Bump to 1400 so Tailscale and friends can fit their packets inside
+# https://github.com/tailscale/tailscale/issues/4833#issuecomment-1271889305
+# https://blog.cloudflare.com/increasing-ipv6-mtu/
+MTUBytes=1400
+Unmanaged=no
+

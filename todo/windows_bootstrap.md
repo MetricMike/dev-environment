@@ -15,6 +15,15 @@ https://ohmyposh.dev
 
 New-Item -ItemType SymbolicLink -Force -Path $env:LOCALAPPDATA\PowerToys -Target $env:DROPBOX\.powertoys
 
+# Point minikube, kube, and docker to I:\
+New-Item -ItemType Directory -Force -Path I:\Users\Michael\.minikube
+New-Item -ItemType Directory -Force -Path I:\Users\Michael\.kube
+New-Item -ItemType Directory -Force -Path I:\Users\Michael\.docker
+
+New-Item -ItemType Junction -Force -Path $env:USERPROFILE\.minikube -Value I:\Users\Michael\.minikube
+New-Item -ItemType Junction -Force -Path $env:USERPROFILE\.kube -Value I:\Users\Michael\.kube
+New-Item -ItemType Junction -Force -Path $env:USERPROFILE\.docker -Value I:\Users\Michael\.docker
+
 # WinGET Sync
 
 winget import .\packages.json --accept-package-agreements --accept-source-agreements
@@ -46,3 +55,8 @@ cd ../visualstudioexptteam.vscodeintellicode-${VERSION}
 prettier -w dist/intellicode.js
 g c -a -m "pretty intellicode.js"
 git push
+
+
+---
+
+- enable docker and minikube

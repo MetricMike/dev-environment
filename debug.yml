@@ -1,5 +1,4 @@
 ---
-
 - name: debug.yml
   hosts: localhost
   gather_facts: no
@@ -7,15 +6,15 @@
   tasks:
     - name: Update/clean/full-upgrade
       apt:
-        update_cache: yes
+        update_cache: true
         cache_valid_time: 86400
-        autoclean: yes
-        autoremove: yes
+        autoclean: true
+        autoremove: true
         upgrade: full
-      become: yes
+      become: true
 
     - name: Update system pacakages
       apt:
         name: "*"
         state: latest
-      become: yes
+      become: true
