@@ -17,6 +17,6 @@
 
 - name: Download autocompletion
   get_url:
-    url: https://raw.githubusercontent.com/git/git/main/contrib/completion/git-completion.bash
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
     dest: ~/.startup.d/1_git-completion.sh
     mode: u=rw-,g=r--,o=r--
