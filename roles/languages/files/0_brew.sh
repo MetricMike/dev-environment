@@ -1,3 +1,3 @@
 #! /bin/bash
 
-eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"
+eval "$("${HOME}"/.linuxbrew/bin/brew shellenv)"

@@ -95,7 +95,7 @@ SHUTDOWN_INIT='source ${HOME}/.shutdown.sh'
 grep -qxF "${SHUTDOWN_INIT}" ${HOME}/.bash_logout || \
 echo -e "${SHUTDOWN_INIT}" >> ${HOME}/.bash_logout
 
-cat <<-'EOF' > /etc/sudoers.d/mm_pwdless
+sudo cat <<-'EOF' > /etc/sudoers.d/mm_pwdless
 
 metricmike ALL=NOPASSWD: ALL
 
