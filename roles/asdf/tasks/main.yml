@@ -12,7 +12,7 @@
 
 - name: Load ASDF plugins
   shell: /bin/bash -lc "asdf plugin-add {{ item }}"
-  loop: "{{ tools + [ 'java' ] }}"
+  loop: "{{ tools + [ 'java' , 'rust' ] }}"
   failed_when: false
 
 - name: Update ASDF plugins

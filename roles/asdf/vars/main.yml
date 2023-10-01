@@ -1,5 +1,6 @@
-# Java doesn't quite follow the same pattern as other asdf plugins, so it gets
-java_version: openjdk
+# Java and Rust don't quite follow the same pattern as other asdf plugins, so they get
+java_version: openjdk-20
+rust_version: stable
 tools:
   - allure
   - awscli
@@ -11,6 +12,7 @@ tools:
   - golang
   - gradle
   - jq
+  - kotlin
   - maven
   - nodejs
   - packer

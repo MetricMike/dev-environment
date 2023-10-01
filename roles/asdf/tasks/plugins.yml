@@ -16,3 +16,7 @@
 - name: Install/activate latest Powershell
   shell: /bin/bash -lc "dotnet tool install --global PowerShell"
   failed_when: false
+
+- name: Install/activate latest rust
+  shell: /bin/bash -lc "asdf install rust $(asdf latest rust {{ rust_version }}); asdf global rust $(asdf latest rust {{ rust_version }})"
+  failed_when: false
