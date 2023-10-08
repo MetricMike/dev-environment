@@ -1,16 +1,10 @@
 ---
-
 - name: developer.yml
   hosts: localhost
   tasks:
-
-    # - meta: end_play
-
     - include_role:
         name: "{{ role_item }}"
       loop:
-       - asdf
-       - languages
-       - wsl
+        - languages
       loop_control:
         loop_var: role_item

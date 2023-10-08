@@ -1,5 +1,6 @@
 ---
-# Java and PowerShell don't quite follow the same pattern as other asdf plugins, so they're added separately
+# Java, Rust, and PowerShell don't quite follow the same pattern as other asdf plugins, so they're added separately
+# Not everyone supports python 3.12 yet, so lock that too
 
 - name: Install/activate latest versions
   shell: /bin/bash -lc "asdf install {{ item }} $(asdf latest {{ item }}); asdf global {{ item }} $(asdf latest {{ item }})"
@@ -19,4 +20,8 @@
 
 - name: Install/activate latest rust
   shell: /bin/bash -lc "asdf install rust $(asdf latest rust {{ rust_version }}); asdf global rust $(asdf latest rust {{ rust_version }})"
+  failed_when: false
+
+- name: Install/activate latest supported python
+  shell: /bin/bash -lc "asdf install python $(asdf latest python {{ python_version }}); asdf global python $(asdf latest python {{ python_version }})"
   failed_when: false

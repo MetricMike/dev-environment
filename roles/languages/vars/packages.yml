@@ -5,12 +5,13 @@ python_packages:
   - pip
   - wheel
   # https://github.com/mitogen-hq/mitogen/blob/master/docs/changelog.rst
-  # mitogen 0.3.3 supports ansible <= 5
-  # mitogen 0.3.4 supports ansible 6 but is not released yet
-  - ansible~=5.0
-  - mitogen~=0.3.0
+  # mitogen support -        0.3.4 : ansible 6 / python 3.10
+  #                 - master/0.3.5 : ansible 6 / python 3.11
+  #                 -    pull/1017 : ansible 7 / python 3.11
+  - ansible~=6.0
+  - git+https://github.com/mitogen-hq/mitogen.git@master
   # ASDF python can't see the python-apt system package, so install it directly
-  # pypi is 0.7.8, we need at least 2.1.3+, but main's fairly stable
+  # could steal this from system python, but git's quicker to get updates
   - git+https://salsa.debian.org/apt-team/python-apt.git@main
   - awscli
 node_packages:

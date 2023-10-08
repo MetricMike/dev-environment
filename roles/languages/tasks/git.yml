@@ -12,11 +12,11 @@
   lineinfile:
     create: true
     path: ~/.config/git/allowed_signers
-    regexp: '^michael.weigle@gmail.com'
-    line: "michael.weigle@gmail.com namespaces=\"git\" {{ lookup('url', 'https://github.com/metricmike.keys', split_lines=False) }}"
+    regexp: "^michael.weigle@gmail.com"
+    line: 'michael.weigle@gmail.com namespaces="git" {{ lookup(''url'', ''https://github.com/metricmike.keys'', split_lines=False) }}'
 
 - name: Download autocompletion
   get_url:
     url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-    dest: ~/.startup.d/1_git-completion.sh
+    dest: ~/.startup.d/10_git-completion.sh
     mode: u=rw-,g=r--,o=r--

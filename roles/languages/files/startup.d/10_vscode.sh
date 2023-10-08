@@ -1,7 +1,8 @@
 #! /bin/bash
 
-if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-  # shellcheck source=/dev/null
+# shellcheck disable=SC1090
+
+if [[ "${TERM_PROGRAM}" == "vscode" ]]; then
   . "$(code --locate-shell-integration-path bash)"
   export EDITOR=code
 else

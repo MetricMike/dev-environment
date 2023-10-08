@@ -7,7 +7,7 @@
 - name: Enable chrony to control system clock
   lineinfile:
     path: /etc/default/chrony
-    regexp: '^SYNC_IN_CONTAINER'
+    regexp: "^SYNC_IN_CONTAINER"
     line: SYNC_IN_CONTAINER="yes"
   become: true
 
@@ -16,19 +16,3 @@
   shell: |
     sudo mount --make-rshared /
   become: true
-
-- name: Add bash configurations
-  copy:
-    src: "{{ item }}.sh"
-    dest: "~/.startup.d/{{ item }}.sh"
-    mode: u=rw-,g=r--,o=r--
-  loop:
-    - 00_locale
-
-- name: Remove deprecated configurations
-  file:
-    path: "{{ item }}"
-    state: absent
-  loop:
-    - "~/.startup.d/gpg.sh"
-    - "~/.gnupg"

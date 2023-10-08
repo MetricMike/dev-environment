@@ -1,12 +1,13 @@
 ---
-
 - include_tasks:
     file: "{{ task_item }}.yml"
   loop:
     - env
     - git
+    - asdf
     - packages
     - prompt
+    - wsl
   loop_control:
     loop_var: task_item
 

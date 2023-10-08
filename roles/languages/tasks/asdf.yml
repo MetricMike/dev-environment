@@ -1,10 +1,11 @@
 ---
+- include_vars: asdf.yml
 
 # Using my repo while working on https://github.com/asdf-vm/asdf/issues/866, also ignore workspace conflicts
 - name: Ensure asdf repo is present
   git:
-    repo: 'https://github.com/MetricMike/asdf.git'
-    dest: '~/.asdf'
+    repo: "https://github.com/MetricMike/asdf.git"
+    dest: "~/.asdf"
   failed_when: false
 
 - name: Update ASDF
@@ -12,7 +13,7 @@
 
 - name: Load ASDF plugins
   shell: /bin/bash -lc "asdf plugin-add {{ item }}"
-  loop: "{{ tools + [ 'java' , 'rust' ] }}"
+  loop: "{{ tools + [ 'java' , 'rust', 'python' ] }}"
   failed_when: false
 
 - name: Update ASDF plugins
@@ -23,22 +24,14 @@
     path: "{{ item }}"
     state: directory
   loop:
-    - ~/.bin
+    - ~/.local/bin
 
 - name: Add extra commands
   copy:
     src: "{{ item }}.sh"
-    dest: "~/.bin/{{ item }}"
+    dest: "~/.local/bin/{{ item }}"
     mode: u=rwx,g=r-x,o=r-x
   loop:
     - asdf-prune
 
-- name: Add bash configurations
-  copy:
-    src: "{{ item }}"
-    dest: "~/.startup.d/{{ item }}"
-    mode: u=rw-,g=r--,o=r--
-  loop:
-    - 0_asdf.sh
-
-- include_tasks: plugins.yml
+- include_tasks: asdf_plugins.yml
