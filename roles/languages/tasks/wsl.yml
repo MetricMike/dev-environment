@@ -11,8 +11,9 @@
     line: SYNC_IN_CONTAINER="yes"
   become: true
 
-# https://github.com/conda-forge/podman-feedstock/issues/25#issuecomment-1181563537
-- name: Enable shared mount for podman
-  shell: |
-    sudo mount --make-rshared /
-  become: true
+# https://github.com/arkane-systems/genie/wiki/Systemd-units-known-to-be-problematic-under-WSL#systemd-remount-fsservice
+- name: Remove problematic cloudimg-rootfs
+  mount:
+    path: /
+    src: LABEL=cloudimg-rootfs
+    state: absent

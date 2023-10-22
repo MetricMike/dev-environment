@@ -1,0 +1,11 @@
+[wsl2]
+autoProxy=true
+dnsTunneling=true
+firewall=true
+networkingMode=mirrored
+
+[experimental]
+autoMemoryReclaim=gradual
+sparseVhd=true
+hostAddressLoopback=true
+bestEffortDnsParsing=true
