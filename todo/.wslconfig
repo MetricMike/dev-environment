@@ -9,3 +9,4 @@ autoMemoryReclaim=gradual
 sparseVhd=true
 hostAddressLoopback=true
 bestEffortDnsParsing=true
+useWindowsDnsCache=true

@@ -16,4 +16,5 @@
   mount:
     path: /
     src: LABEL=cloudimg-rootfs
-    state: absent
+    state: absent_from_fstab
+  become: true

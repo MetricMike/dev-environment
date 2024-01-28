@@ -60,3 +60,14 @@ sudo tailscale up
   - oh i didn't have `libgl1-mesa-dev libharfbuzz-dev libthai-dev` installed
 
 - .bin/.linuxbrew are getting on the path multiple times
+
+
+###
+
+- Add wslu https://wslutiliti.es
+
+```bash
+sudo add-apt-repository ppa:wslutilities/wslu
+sudo apt update
+sudo apt install wslu
+```
