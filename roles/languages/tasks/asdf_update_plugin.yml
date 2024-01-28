@@ -1,0 +1,18 @@
+---
+- name: "{{ asdf_plugin }} | Retrieve latest version"
+  command: "asdf latest {{ asdf_plugin }}"
+  register: asdf_plugin_latest
+
+- name: "{{ asdf_plugin }} | Set latest version"
+  set_fact:
+    asdf_plugin_latest_version: "{{ asdf_plugin_latest.stdout }}"
+
+- name: "{{ asdf_plugin }} | Install latest version"
+  command: "asdf install {{ asdf_plugin }} latest"
+  args:
+    creates: "{{ ansible_user_dir }}/.asdf/installs/{{ asdf_plugin }}/{{ asdf_plugin_latest_version }}"
+  register: asdf_install
+
+- name: "{{ asdf_plugin }} | Activate latest version"
+  command: "asdf global {{ asdf_plugin }} {{ asdf_plugin_latest_version }}"
+  when: asdf_install.changed

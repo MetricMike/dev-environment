@@ -1,7 +1,8 @@
 # Java and Rust don't quite follow the same pattern as other asdf plugins, so they get
-java_version: openjdk-20
+java_version: adoptopenjdk-17
 rust_version: stable
 python_version: "3.11"
+jq_version: "1.6"
 tools:
   - allure
   - awscli

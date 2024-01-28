@@ -2,10 +2,11 @@
 # Java, Rust, and PowerShell don't quite follow the same pattern as other asdf plugins, so they're added separately
 # Not everyone supports python 3.12 yet, so lock that too
 
-- name: Install/activate latest versions
-  shell: /bin/bash -lc "asdf install {{ item }} $(asdf latest {{ item }}); asdf global {{ item }} $(asdf latest {{ item }})"
+- name: Check/Update latest versions of each plugin
+  include_tasks: asdf_update_plugin.yml
   loop: "{{ tools }}"
-  failed_when: false
+  loop_control:
+    loop_var: asdf_plugin
 
 - name: Install/activate latest java
   shell: /bin/bash -lc "asdf install java $(asdf latest java {{ java_version }}); asdf global java $(asdf latest java {{ java_version }})"
