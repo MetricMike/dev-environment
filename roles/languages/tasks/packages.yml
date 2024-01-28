@@ -68,3 +68,8 @@
     name: "{{ homebrew_packages }}"
     state: latest
   when: homebrew_packages is iterable
+  register: homebrew_packages
+
+- name: Reload shell if homebrew packages updated to pick up new paths
+  shell: . {{ ansible_user_dir }}/.bashrc
+  when: homebrew_packages.changed
