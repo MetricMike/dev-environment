@@ -87,17 +87,12 @@ sudo apt -y install \
 . "${HOME}/.bashrc"
 
 asdf plugin-add python
-asdf install python "$(asdf latest python 3.11)"
-asdf global python "$(asdf latest python 3.11)"
+asdf install python latest
+asdf global python latest
 asdf reshim python
 
 # Update pip components first
-pip install -U pip wheel
-pip install -U \
-  ansible~=7.0 \
-  `# ASDF python can't see the python-apt system package, so install it directly` \
-  `# could steal this from system python, but git's quicker to get updates` \
-  git+https://salsa.debian.org/apt-team/python-apt.git@main
+pip install -U pip wheel setuptools ansible~=8.0
 
 # Verify
 ansible --version

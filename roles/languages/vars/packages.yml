@@ -4,8 +4,8 @@ system_packages:
 python_packages:
   - pip
   - wheel
-  - ansible~=7.0
-  - git+https://salsa.debian.org/apt-team/python-apt.git@main
+  - setuptools
+  - ansible~=8.0
   - awscli
 node_packages:
   - "@angular/cli"
@@ -18,3 +18,4 @@ homebrew_taps:
   - jandedobbeleer/oh-my-posh
 homebrew_packages:
   - jandedobbeleer/oh-my-posh/oh-my-posh
+  - gh

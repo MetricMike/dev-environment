@@ -41,6 +41,7 @@
 #   debug:
 #     msg: "node_packages: {{ node_packages }}"
 
+# List support - https://github.com/ansible-collections/community.general/issues/5421
 - name: Install node packages
   npm:
     name: "{{ item }}"
@@ -66,5 +67,5 @@
 
 - homebrew:
     name: "{{ homebrew_packages }}"
-    state: latest
+    state: present
   when: homebrew_packages is iterable

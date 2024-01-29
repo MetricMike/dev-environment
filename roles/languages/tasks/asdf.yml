@@ -3,6 +3,7 @@
 
 - name: Update ASDF
   shell: /bin/bash -lc 'asdf update'
+# TODO: skip if updated today
 
 - name: Load ASDF plugins
   shell: /bin/bash -lc "asdf plugin-add {{ item }}"

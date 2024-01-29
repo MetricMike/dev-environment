@@ -12,3 +12,5 @@
 
 2. legacy repokey?
     W: https://download.mono-project.com/repo/ubuntu/dists/stable-focal/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+3. add github token as part of startup.d  - I run into the rate limit too much
