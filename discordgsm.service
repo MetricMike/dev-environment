@@ -1,0 +1,14 @@
+[Unit]
+Description=Discord Game Server Monitor
+After=network.target
+
+[Service]
+User=metricmike
+Group=metricmike
+WorkingDirectory=/home/metricmike/projects/GameServerMonitor
+ExecStart=/home/metricmike/projects/GameServerMonitor/venv/bin/python -u main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

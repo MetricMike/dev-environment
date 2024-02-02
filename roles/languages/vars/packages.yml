@@ -6,6 +6,7 @@ python_packages:
   - wheel
   - setuptools
   - ansible~=8.0
+  - ansible-lint
   - awscli
 node_packages:
   - "@angular/cli"
