@@ -2,22 +2,22 @@
 # Java, Rust, and PowerShell don't quite follow the same pattern as other asdf plugins, so they're added separately
 
 - name: Check/Update latest versions of each plugin
-  include_tasks: asdf_update_plugin.yml
+  ansible.builtin.include_tasks: asdf_update_plugin.yml
   loop: "{{ tools }}"
   loop_control:
     loop_var: asdf_plugin
 
 - name: Install/activate latest java
-  shell: /bin/bash -lc "asdf install java $(asdf latest java {{ java_version }}); asdf global java $(asdf latest java {{ java_version }})"
+  ansible.builtin.shell: /bin/bash -lc "asdf install java $(asdf latest java {{ java_version }}); asdf global java $(asdf latest java {{ java_version }})"
   failed_when: false
 
 - name: Set stable path for JAVA_HOME for other consumers (vscode-java)
-  shell: /bin/bash -lc "ln -snf $(asdf where java) ~/java_home"
+  ansible.builtin.shell: /bin/bash -lc "ln -snf $(asdf where java) ~/java_home"
 
 - name: Install/activate latest Powershell
-  shell: /bin/bash -lc "dotnet tool install --global PowerShell"
+  ansible.builtin.shell: /bin/bash -lc "dotnet tool install --global PowerShell"
   failed_when: false
 
 - name: Install/activate latest rust
-  shell: /bin/bash -lc "asdf install rust $(asdf latest rust {{ rust_version }}); asdf global rust $(asdf latest rust {{ rust_version }})"
+  ansible.builtin.shell: /bin/bash -lc "asdf install rust $(asdf latest rust {{ rust_version }}); asdf global rust $(asdf latest rust {{ rust_version }})"
   failed_when: false

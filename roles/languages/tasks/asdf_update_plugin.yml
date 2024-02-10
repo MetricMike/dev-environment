@@ -1,35 +1,35 @@
 ---
 - name: "{{ asdf_plugin }} | Retrieve latest version"
-  command: "asdf latest {{ asdf_plugin }}"
+  ansible.builtin.command: "asdf latest {{ asdf_plugin }}"
   register: asdf_plugin_latest
 
 - name: "{{ asdf_plugin }} | Retrieve current version"
-  command: "asdf current {{ asdf_plugin }}"
+  ansible.builtin.command: "asdf current {{ asdf_plugin }}"
   register: asdf_plugin_current
 
 - name: "{{ asdf_plugin }} | Set latest version"
-  set_fact:
+  ansible.builtin.set_fact:
     asdf_plugin_latest_version: "{{ asdf_plugin_latest.stdout }}"
 
 - name: "{{ asdf_plugin }} | Install/Activate latest version"
   block:
     - name: "{{ asdf_plugin }} | Install latest version"
-      command: "asdf install {{ asdf_plugin }} latest"
+      ansible.builtin.command: "asdf install {{ asdf_plugin }} latest"
       args:
         creates: "{{ ansible_user_dir }}/.asdf/installs/{{ asdf_plugin }}/{{ asdf_plugin_latest_version }}"
       register: asdf_install
 
     - name: "{{ asdf_plugin }} | Activate latest version"
-      command: "asdf global {{ asdf_plugin }} {{ asdf_plugin_latest_version }}"
+      ansible.builtin.command: "asdf global {{ asdf_plugin }} {{ asdf_plugin_latest_version }}"
       when: asdf_install.changed
   when: asdf_plugin_latest_version not in asdf_plugin_current.stdout
   rescue:
     - name: Clear downloads if error indicates
-      file:
+      ansible.builtin.file:
         path: "{{ ansible_user_dir }}/.asdf/downloads/{{ asdf_plugin }}/{{ asdf_plugin_latest_version }}"
         state: absent
       when: ansible_failed_result.stderr is match("mkdir") and ansible_failed_result.stderr is search("\.asdf/downloads/" ~ asdf_plugin ~ "/" ~ asdf_plugin_latest_version)
-    
+
     - name: Retry
-      include_tasks:
+      ansible.builtin.include_tasks:
         file: asdf_update_plugin.yml

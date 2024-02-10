@@ -1,8 +1,9 @@
 ---
-- name: developer.yml
+- name: Developer
   hosts: localhost
   tasks:
-    - include_role:
+    - name: "{{ role_item }}"
+      ansible.builtin.include_role:
         name: "{{ role_item }}"
       loop:
         - languages
