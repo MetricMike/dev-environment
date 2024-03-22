@@ -7,8 +7,6 @@
     - https://github.com/microsoft/WSL/issues/8922
 
 ### during ~/.bootstrap-ansible.sh
-1. homebrew now installs from API
-   need to run `brew untap homebrew/core`
 
 2. legacy repokey?
     W: https://download.mono-project.com/repo/ubuntu/dists/stable-focal/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.

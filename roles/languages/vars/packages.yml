@@ -20,3 +20,4 @@ homebrew_taps:
 homebrew_packages:
   - jandedobbeleer/oh-my-posh/oh-my-posh
   - gh
+  - gradle-completion
