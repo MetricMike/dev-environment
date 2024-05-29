@@ -4,13 +4,6 @@
     path: ~/.hushlogin
     state: touch
 
-- name: Enable chrony to control system clock
-  lineinfile:
-    path: /etc/default/chrony
-    regexp: "^SYNC_IN_CONTAINER"
-    line: SYNC_IN_CONTAINER="yes"
-  become: true
-
 # https://github.com/arkane-systems/genie/wiki/Systemd-units-known-to-be-problematic-under-WSL#systemd-remount-fsservice
 - name: Remove problematic cloudimg-rootfs
   mount:

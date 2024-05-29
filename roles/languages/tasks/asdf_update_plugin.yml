@@ -5,6 +5,7 @@
 
 - name: "{{ asdf_plugin }} | Retrieve current version"
   ansible.builtin.command: "asdf current {{ asdf_plugin }}"
+  failed_when: false
   register: asdf_plugin_current
 
 - name: "{{ asdf_plugin }} | Set latest version"

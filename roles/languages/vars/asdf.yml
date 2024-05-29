@@ -1,5 +1,5 @@
 # Java and Rust don't quite follow the same pattern as other asdf plugins, so they get
-java_version: adoptopenjdk-17
+java_version: adoptopenjdk-21
 rust_version: stable
 tools:
   - allure
@@ -16,7 +16,9 @@ tools:
   - maven
   - nodejs
   - packer
+  - php
   - python
+  - redis
   - ruby
   - terraform
   - usql

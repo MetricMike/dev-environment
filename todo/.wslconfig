@@ -1,7 +1,6 @@
 [wsl2]
 autoProxy=true
 dnsTunneling=true
-firewall=true
 networkingMode=mirrored
 
 [experimental]
