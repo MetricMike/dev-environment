@@ -4,10 +4,11 @@
   loop:
     - env
     - git
-    - asdf
-    - packages
     - prompt
     - wsl
+    - asdf
+    - packages
+    - completion
   loop_control:
     loop_var: task_item
 

@@ -3,7 +3,6 @@
 # shellcheck disable=SC1091
 
 . "${HOME}/.asdf/asdf.sh"
-. "${HOME}/.asdf/completions/asdf.bash"
 
 # Java
 ASDF_JAVA_HOME=$(asdf where java)

@@ -1,7 +1,7 @@
 #! /bin/bash
 
 alias g=git
-__git_complete g __git_main
+complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g
 
 # unset GITHUB_TOKEN from gh's process environment and run gh command.
 # see https://stackoverflow.com/a/41749660 & https://github.com/cli/cli/issues/3799 for more.
