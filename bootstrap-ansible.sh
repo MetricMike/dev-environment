@@ -21,13 +21,6 @@ sudo apt -y install \
 # Add a local bin dir
 mkdir -p "${HOME}/.local/bin"
 
-# Install/update Homebrew
-if [[ -d "${HOME}/.linuxbrew" ]]; then
-  brew update
-else
-  NONINTERACTIVE=1 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-fi
-
 # Install/update ASDF
 if [[ -d "${HOME}/.asdf" ]]; then
   asdf update
@@ -47,7 +40,6 @@ mkdir -p "${HOME}/.shutdown.d"
 # cp /mnt/i/Users/Michael/Dropbox/mkey_big.pub ~/.ssh/id_rsa.pub
 
 cp -r ./roles/languages/files/startup.d/01_asdf.sh "${HOME}/.startup.d/"
-cp -r ./roles/languages/files/startup.d/01_brew.sh "${HOME}/.startup.d/"
 cp -r ./roles/languages/files/startup.sh "${HOME}/.startup.sh"
 cp -r ./roles/languages/files/shutdown.sh "${HOME}/.shutdown.sh"
 

@@ -1,1 +1,11 @@
 ---
+- name: Fetch ohmyposh installer
+  ansible.builtin.uri:
+    url: https://ohmyposh.dev/install.sh
+    return_content: yes
+  register: ohmyposh_installer
+
+- name: Run ohmyposh installer
+  ansible.builtin.shell:
+    cmd: bash -s -- -d ~/.local/bin
+    stdin: "{{ ohmyposh_installer.content }}"

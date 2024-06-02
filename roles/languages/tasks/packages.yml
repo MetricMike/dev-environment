@@ -52,18 +52,3 @@
   loop:
     - python
     - nodejs
-
-# Update homebrew and upgrade all packages
-- homebrew:
-    update_homebrew: true
-    upgrade_all: true
-
-- homebrew_tap:
-    name: "{{ homebrew_taps }}"
-    state: present
-  when: homebrew_taps is iterable
-
-- homebrew:
-    name: "{{ homebrew_packages }}"
-    state: present
-  when: homebrew_packages is iterable
