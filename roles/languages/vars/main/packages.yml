@@ -1,10 +1,12 @@
 system_packages:
   - podman
   - autoconf
+  - bash-completion
   - bison
   - build-essential
   - curl
   - gettext
+  - gh
   - git
   - libgd-dev
   - libcurl4-openssl-dev
@@ -39,9 +41,3 @@ node_packages:
   - mapshaper
   - typescript
   - yarn
-homebrew_taps:
-  - jandedobbeleer/oh-my-posh
-homebrew_packages:
-  - jandedobbeleer/oh-my-posh/oh-my-posh
-  - gh
-  - gradle-completion

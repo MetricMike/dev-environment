@@ -1,6 +1,4 @@
 ---
-- include_vars: packages.yml
-
 - name: Update/clean/full-upgrade
   apt:
     update_cache: true

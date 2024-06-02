@@ -1,6 +1,4 @@
 ---
-- include_vars: gitconfig.yml
-
 - name: Config
   git_config:
     name: "{{ item.0.key }}.{{ item.1.keys() | list | first }}"

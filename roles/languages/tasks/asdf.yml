@@ -1,7 +1,4 @@
 ---
-- name: Load ASDF vars
-  ansible.builtin.include_vars: asdf.yml
-
 - name: Update ASDF
   ansible.builtin.shell: /bin/bash -lc 'asdf update'
 # TODO: skip if updated today

@@ -2,23 +2,14 @@
 java_version: adoptopenjdk-21
 rust_version: stable
 tools:
-  - allure
   - awscli
-  - dasel
   - direnv
   - dotnet-core
-  - git
-  - github-cli
   - golang
   - gradle
   - jq
-  - kotlin
   - maven
   - nodejs
-  - packer
-  - php
   - python
-  - redis
   - ruby
   - terraform
-  - usql
