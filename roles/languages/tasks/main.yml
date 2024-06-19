@@ -9,6 +9,7 @@
     - asdf
     - packages
     - completion
+    - systemd
   loop_control:
     loop_var: task_item
 

@@ -7,7 +7,12 @@ tools:
   - dotnet-core
   - golang
   - gradle
+  # https://github.com/kc-workspace/asdf-helm.git
+  - helm
   - jq
+  - k3d
+  # https://github.com/asdf-community/asdf-kubectl.git
+  - kubectl
   - maven
   - nodejs
   - python

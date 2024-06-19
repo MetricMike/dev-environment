@@ -1,0 +1,4 @@
+---
+- name: Enable linger
+  ansible.builtin.command: "loginctl enable-linger metricmike"
+  become: true
