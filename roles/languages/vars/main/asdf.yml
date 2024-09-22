@@ -17,4 +17,6 @@ tools:
   - nodejs
   - python
   - ruby
+  - shellcheck
+  - shfmt
   - terraform
