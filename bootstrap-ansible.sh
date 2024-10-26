@@ -24,8 +24,15 @@ sudo apt -y autoremove
 sudo apt -y autoclean
 
 sudo apt -y install \
-  build-essential curl dirmngr file git \
-  moreutils procps tree unzip
+  build-essential \
+  curl \
+  dirmngr \
+  file \
+  git \
+  moreutils \
+  procps \
+  tree \
+  unzip
 
 # Add a local bin dir
 mkdir -p "${HOME}/.local/bin"
@@ -88,8 +95,8 @@ sudo apt -y install \
 . "${HOME}/.bashrc"
 
 asdf plugin-add python
-asdf install python latest
-asdf global python latest
+asdf install python latest:3.12
+asdf global python latest:3.12
 asdf reshim python
 
 # Update pip components first
