@@ -87,10 +87,29 @@ echo "${USER} ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/no-prompt-
 
 # Build environment for python
 sudo apt -y install \
-  autoconf bison build-essential libcurl4-openssl-dev libbz2-dev libdb-dev libffi-dev \
-  libgdbm-dev libgdbm6 liblzma-dev libncurses5-dev libreadline-dev \
-  libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev libyaml-dev \
-  llvm make tk-dev wget xz-utils zlib1g-dev
+  autoconf \
+  bison \
+  build-essential \
+  libbz2-dev \
+  libcurl4-openssl-dev \
+  libdb-dev \
+  libffi-dev \
+  libgdbm-dev \
+  libgdbm6 \
+  liblzma-dev \
+  libncurses5-dev \
+  libreadline-dev \
+  libsqlite3-dev \
+  libssl-dev \
+  libxml2-dev \
+  libxmlsec1-dev \
+  libyaml-dev \
+  llvm \
+  make \
+  tk-dev \
+  wget \
+  xz-utils \
+  zlib1g-dev
 
 . "${HOME}/.bashrc"
 
@@ -100,7 +119,11 @@ asdf global python latest:3.12
 asdf reshim python
 
 # Update pip components first
-pip install -U pip wheel setuptools ansible~=8.0
+pip install -U \
+  ansible~=8.0 \
+  pip \
+  setuptools \
+  wheel
 
 # Verify
 ansible --version
