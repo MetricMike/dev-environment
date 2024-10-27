@@ -133,4 +133,5 @@ ansible-playbook developer.yml
 echo -e "\nFinished bootstrapping."
 
 unset PROMPT_COMMAND
-exec "${SHELL}" -i
+
+. "${HOME}/.bashrc"
