@@ -1,0 +1,10 @@
+[Unit]
+Description=Ollama Service
+After=network-online.target
+
+[Service]
+ExecStart=/home/metricmike/.asdf/shims/ollama serve
+# Environment="PATH=$PATH"
+
+[Install]
+WantedBy=default.target

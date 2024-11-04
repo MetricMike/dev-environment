@@ -1,36 +1,38 @@
 ---
-- name: "{{ asdf_plugin }} | Retrieve latest version"
-  ansible.builtin.command: "asdf latest {{ asdf_plugin }}"
-  register: asdf_plugin_latest
+- name: "{{ asdf_plugin.name }} | Retrieve latest requested version"
+  ansible.builtin.command: "asdf latest {{ asdf_plugin.name }} {{ (asdf_plugin.version != 'latest') | ternary(asdf_plugin.version, '') }}"
+  register: asdf_plugin_latest_version_cmd
 
-- name: "{{ asdf_plugin }} | Retrieve current version"
-  ansible.builtin.command: "asdf current {{ asdf_plugin }}"
+- name: "{{ asdf_plugin.name }} | Retrieve current version"
+  ansible.builtin.command: "asdf current {{ asdf_plugin.name }}"
   failed_when: false
-  register: asdf_plugin_current
+  register: asdf_plugin_current_version_cmd
 
-- name: "{{ asdf_plugin }} | Set latest version"
+- name: "{{ asdf_plugin.name }} | Set versions"
   ansible.builtin.set_fact:
-    asdf_plugin_latest_version: "{{ asdf_plugin_latest.stdout }}"
+    asdf_plugin_latest_version: "{{ asdf_plugin_latest_version_cmd.stdout }}"
+    asdf_plugin_current_version: "{{ (asdf_plugin_current_version_cmd.stdout | split)[1] }}"
 
 # TODO: sometimes the activate step gets skipped and then I have a broken shell :(
 # need to have a better detection system for when to skip
-- name: "{{ asdf_plugin }} | Install/Activate latest version"
+- name: "{{ asdf_plugin.name }} | Install/Activate latest version"
   block:
-    - name: "{{ asdf_plugin }} | Install latest version"
-      ansible.builtin.command: "asdf install {{ asdf_plugin }} latest"
+    - name: "{{ asdf_plugin.name }} | Install latest version"
+      ansible.builtin.command: "asdf install {{ asdf_plugin.name }} {{ asdf_plugin_latest_version }}"
       args:
-        creates: "{{ ansible_user_dir }}/.asdf/installs/{{ asdf_plugin }}/{{ asdf_plugin_latest_version }}"
+        creates: "{{ ansible_user_dir }}/.asdf/installs/{{ asdf_plugin.name }}/{{ asdf_plugin_latest_version }}"
       register: asdf_install
 
-    - name: "{{ asdf_plugin }} | Activate latest version"
-      ansible.builtin.command: "asdf global {{ asdf_plugin }} {{ asdf_plugin_latest_version }}"
+    # TODO: detect if asdf_plugin_latest_version is in tool version OR re-run asdf current? 
+    - name: "{{ asdf_plugin.name }} | Activate latest version"
+      ansible.builtin.command: "asdf global {{ asdf_plugin.name }} {{ asdf_plugin_latest_version }}"
       when: asdf_install.changed
 
-  when: asdf_plugin_latest_version not in asdf_plugin_current.stdout
+  when: asdf_plugin_latest_version != asdf_plugin_current_version
   rescue:
     - name: Clear downloads if error indicates
       ansible.builtin.file:
-        path: "{{ ansible_user_dir }}/.asdf/downloads/{{ asdf_plugin }}/{{ asdf_plugin_latest_version }}"
+        path: "{{ ansible_user_dir }}/.asdf/downloads/{{ asdf_plugin.name }}/{{ asdf_plugin_latest_version }}"
         state: absent
       when: ansible_failed_result.stderr is match("mkdir") and ansible_failed_result.stderr is search("\.asdf/downloads/" ~ asdf_plugin ~ "/" ~ asdf_plugin_latest_version)
 

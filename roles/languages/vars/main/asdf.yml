@@ -2,21 +2,22 @@
 java_version: adoptopenjdk-21
 rust_version: stable
 tools:
-  - awscli
-  - direnv
-  - dotnet-core
-  - golang
-  - gradle
-  # https://github.com/kc-workspace/asdf-helm.git
-  - helm
-  - jq
-  - k3d
-  # https://github.com/asdf-community/asdf-kubectl.git
-  - kubectl
-  - maven
-  - nodejs
-  - python
-  - ruby
-  - shellcheck
-  - shfmt
-  - terraform
+  ollama: latest
+  awscli: latest
+  direnv: latest
+  dotnet-core: latest
+  golang: latest
+  gradle: latest
+  helm: latest
+  jq: latest
+  k3d: latest
+  kubectl: latest
+  maven: latest
+  nodejs: latest
+  python: '3.12' # https://github.com/asdf-community/asdf-python/issues/191
+  ruby: latest
+  shellcheck: latest
+  shfmt: latest
+  terraform: latest
+  java: adoptopenjdk-21
+  rust: stable

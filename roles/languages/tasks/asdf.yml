@@ -3,9 +3,13 @@
   ansible.builtin.shell: /bin/bash -lc 'asdf update'
 # TODO: skip if updated today
 
+- name: Get current ASDF plugins
+  ansible.builtin.command: asdf plugin list
+  register: asdf_plugin_list_cmd
+
 - name: Load ASDF plugins
-  shell: /bin/bash -lc "asdf plugin-add {{ item }}"
-  loop: "{{ tools + [ 'java' , 'rust', 'python' ] }}"
+  ansible.builtin.command: "asdf plugin add {{ item }}"
+  loop: "{{ tools.keys() | difference(asdf_plugin_list_cmd.stdout_lines) }}"
   failed_when: false
 
 - name: Update ASDF plugins
