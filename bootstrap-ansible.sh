@@ -120,7 +120,7 @@ asdf reshim python
 
 # Update pip components first
 pip install -U \
-  ansible~=8.0 \
+  ansible~=9.0 \
   pip \
   setuptools \
   wheel

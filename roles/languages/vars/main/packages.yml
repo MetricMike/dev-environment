@@ -31,7 +31,7 @@ python_packages:
   - pip
   - wheel
   - setuptools
-  - ansible~=8.0
+  - ansible~=9.0
   - ansible-lint
   - awscli
 node_packages:
