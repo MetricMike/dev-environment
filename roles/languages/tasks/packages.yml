@@ -8,7 +8,7 @@
     upgrade: full
   become: true
 
-- name: Update system pacakages
+- name: Update system packages
   apt:
     name: "*"
     state: latest
