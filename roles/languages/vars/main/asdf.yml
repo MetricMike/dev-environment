@@ -1,6 +1,3 @@
-# Java and Rust don't quite follow the same pattern as other asdf plugins, so they get
-java_version: adoptopenjdk-21
-rust_version: stable
 tools:
   ollama: latest
   awscli: latest
