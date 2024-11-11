@@ -3,27 +3,26 @@
 # shellcheck disable=SC1091
 # This script should be idempotent and safe to run multiple times
 
-# Enable universe repo
+# Enable universe/restricted/multiverse repos
 RELEASE=$(lsb_release -sc)
-sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu ${RELEASE} universe multiverse"
-sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu ${RELEASE}-updates universe multiverse"
+sudo add-apt-repository -y "${RELEASE} universe restricted multiverse"
 
 # Enable gh cli repo
-(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
-&& sudo mkdir -p -m 755 /etc/apt/keyrings \
-&& wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
-&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
-&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-&& sudo apt update \
-&& sudo apt install gh -y
+(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) &&
+  sudo mkdir -p -m 755 /etc/apt/keyrings &&
+  wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null &&
+  sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg &&
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
+  sudo apt update &&
+  sudo apt install gh --assume-yes
 
 # Install asdf and only the bare minimum required for ansible, asdf, brew
-sudo apt -y update
-sudo apt -y full-upgrade
-sudo apt -y autoremove
-sudo apt -y autoclean
+sudo apt update
+sudo apt full-upgrade --assume-yes
+sudo apt autoremove --assume-yes --purge
+sudo apt autoclean --assume-yes
 
-sudo apt -y install \
+sudo apt --assume-yes install \
   build-essential \
   curl \
   dirmngr \
@@ -120,7 +119,7 @@ asdf reshim python
 
 # Update pip components first
 pip install -U \
-  ansible~=9.0 \
+  ansible \
   pip \
   setuptools \
   wheel
