@@ -5,3 +5,4 @@ ansible
 ansible-lint
 awscli
 mitogen
+ara[server]

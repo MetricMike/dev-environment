@@ -2,6 +2,7 @@
 
 MITOGEN_LOCATION=$(pip show mitogen | grep Location | awk '{print $2}')
 
+export ANSIBLE_CALLBACK_PLUGINS="${HOME}/.ansible/plugins/strategy:/usr/share/ansible/plugins/strategy:$(python -m ara.setup.callback_plugins)"
 export ANSIBLE_CALLBACKS_ENABLED="profile_roles, profile_tasks, timer, community.general.unixy"
 export ANSIBLE_CACHE_PLUGIN="jsonfile"
 export ANSIBLE_CACHE_PLUGIN_CONNECTION="${XDG_CACHE_HOME:-$HOME/.cache}/ansible-cache"
