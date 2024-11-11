@@ -1,25 +1,8 @@
 ---
-- name: Update/clean/full-upgrade
-  apt:
-    update_cache: true
-    cache_valid_time: 86400
-    autoclean: true
-    autoremove: true
-    upgrade: full
-  become: true
 
+# Ansible & Mitogen don't play well with APT when not using the system python... so don't use the apt module
 - name: Update system packages
-  apt:
-    name: "*"
-    state: latest
-  become: true
-
-- name: Install additional system packages
-  apt:
-    name: "{{ system_packages }}"
-    state: latest
-  become: true
-  when: system_packages is iterable
+  ansible.builtin.command: "{{ ansible_user_dir }}/.local/bin/apt_updater.sh"
 
 - name: Install python packages
   pip:
