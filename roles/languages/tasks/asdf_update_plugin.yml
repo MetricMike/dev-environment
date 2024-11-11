@@ -2,23 +2,21 @@
 - name: "{{ asdf_plugin.name }} | Retrieve latest requested version"
   ansible.builtin.command: "asdf latest {{ asdf_plugin.name }} {{ (asdf_plugin.version != 'latest') | ternary(asdf_plugin.version, '') }}"
   register: asdf_plugin_latest_version_cmd
-  when: asdf_plugin_latest_version is not defined
+  # when: asdf_plugin_latest_version is not defined
 
 - name: "{{ asdf_plugin.name }} | Retrieve current version"
   ansible.builtin.command: "asdf current {{ asdf_plugin.name }}"
   failed_when: false
   register: asdf_plugin_current_version_cmd
-  when: asdf_plugin_current_version is not defined
+  # when: asdf_plugin_current_version is not defined
 
 - name: "{{ asdf_plugin.name }} | Set versions"
   ansible.builtin.set_fact:
     asdf_plugin_latest_version: "{{ asdf_plugin_latest_version_cmd.stdout }}"
     asdf_plugin_current_version: "{{ (asdf_plugin_current_version_cmd.stdout | split)[1] }}"
-    cacheable: True
-  when: (asdf_plugin_latest_version is not defined) and (asdf_plugin_current_version is not defined)
+    # cacheable: True
+  # when: (asdf_plugin_latest_version is not defined) and (asdf_plugin_current_version is not defined)
 
-# TODO: sometimes the activate step gets skipped and then I have a broken shell :(
-# need to have a better detection system for when to skip
 - name: "{{ asdf_plugin.name }} | Install/Activate latest version"
   block:
     - name: "{{ asdf_plugin.name }} | Install latest version"
