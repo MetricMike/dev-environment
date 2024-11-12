@@ -8,7 +8,7 @@
     loop_var: asdf_plugin
 
 - name: Set stable path for JAVA_HOME for other consumers (vscode-java)
-  ansible.builtin.shell: /bin/bash -lc "ln -snf $(asdf where java) ~/java_home"
+  ansible.builtin.shell: /bin/bash -lc "ln -snf $(asdf where java) ${HOME}/java_home"
 
 - name: Install/activate latest Powershell
   ansible.builtin.shell: /bin/bash -lc "dotnet tool install --global PowerShell"

@@ -20,12 +20,12 @@
     path: "{{ item }}"
     state: directory
   loop:
-    - ~/.local/bin
+    - "{{ ansible_user_dir }}/.local/bin"
 
 - name: Add extra commands
   copy:
     src: "{{ item }}.sh"
-    dest: "~/.local/bin/{{ item }}"
+    dest: "{{ ansible_user_dir }}/.local/bin/{{ item }}"
     mode: u=rwx,g=r-x,o=r-x
   loop:
     - asdf-prune

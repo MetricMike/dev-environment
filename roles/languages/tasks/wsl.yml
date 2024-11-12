@@ -1,7 +1,7 @@
 ---
 - name: Silence login motd
   file:
-    path: ~/.hushlogin
+    path: "{{ ansible_user_dir }}/.hushlogin"
     state: touch
 
 # https://github.com/arkane-systems/genie/wiki/Systemd-units-known-to-be-problematic-under-WSL#systemd-remount-fsservice

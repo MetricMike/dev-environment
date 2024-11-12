@@ -51,8 +51,8 @@ mkdir -p "${HOME}/.startup.d"
 rm -rf "${HOME}/.shutdown.d"
 mkdir -p "${HOME}/.shutdown.d"
 
-# cp /mnt/i/Users/Michael/Dropbox/mkey_big ~/.ssh/id_rsa ; chmod 0600 ~/.ssh/id_rsa
-# cp /mnt/i/Users/Michael/Dropbox/mkey_big.pub ~/.ssh/id_rsa.pub
+# cp /mnt/i/Users/Michael/Dropbox/mkey_big "${HOME}/.ssh/id_rsa" ; chmod 0600 "${HOME}/.ssh/id_rsa"
+# cp /mnt/i/Users/Michael/Dropbox/mkey_big.pub "${HOME}/.ssh/id_rsa.pub"
 
 cp -r ./roles/languages/files/startup.d/01_asdf.sh "${HOME}/.startup.d/"
 cp -r ./roles/languages/files/startup.sh "${HOME}/.startup.sh"

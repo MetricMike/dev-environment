@@ -4,16 +4,16 @@
     path: "{{ item }}"
     state: directory
   loop:
-    - ~/.local/share/bash-completion
+    - "{{ ansible_user_dir }}/.local/share/bash-completion"
 
 - name: Install asdf completions
   ansible.builtin.file:
-    src: ~/.asdf/completions/asdf.bash
-    dest: ~/.local/share/bash-completion/asdf.bash
+    src: "{{ ansible_user_dir }}/.asdf/completions/asdf.bash"
+    dest: "{{ ansible_user_dir }}/.local/share/bash-completion/asdf.bash"
     state: link
 
 - name: Install gradle completions
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/gradle/gradle-completion/master/gradle-completion.bash
-    dest: ~/.local/share/bash-completion/gradle-completion.bash
+    dest: "{{ ansible_user_dir }}/.local/share/bash-completion/gradle-completion.bash"
     mode: u=rw-,g=r--,o=r--
