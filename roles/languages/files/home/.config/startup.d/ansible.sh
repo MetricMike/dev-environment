@@ -1,7 +1,7 @@
 #! /bin/bash
 
-MITOGEN_LOCATION=$(pip show mitogen | grep Location | awk '{print $2}')
-ARA_LOCATION=$(python -m ara.setup.callback_plugins)
+export MITOGEN_LOCATION=$(pip show mitogen | grep Location | awk '{print $2}')
+export ARA_LOCATION=$(python -m ara.setup.callback_plugins)
 
 export ANSIBLE_CALLBACK_PLUGINS="${HOME}/.ansible/plugins/strategy:/usr/share/ansible/plugins/strategy:${ARA_LOCATION}"
 export ANSIBLE_CALLBACKS_ENABLED="profile_roles, profile_tasks, timer, community.general.unixy"

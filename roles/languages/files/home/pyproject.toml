@@ -1,0 +1,15 @@
+[project]
+name = "default"
+version = "2024.11.17"
+requires-python = ">=3.13"
+dependencies = [
+  "pip",
+  "wheel",
+  "setuptools",
+  "ansible",
+  "ansible-lint",
+  "awscli",
+  "mitogen",
+  "ara[server]",
+  "ruff",
+]

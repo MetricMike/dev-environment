@@ -1,24 +1,16 @@
 ---
 - name: Empty folder
   file:
-    path: "{{ ansible_user_dir }}/.{{ proc_name }}.d"
+    path: "{{ ansible_user_dir }}/.config/{{ proc_name }}.d"
     state: absent
 
 - name: Reset folder
   file:
-    path: "{{ ansible_user_dir }}/.{{ proc_name }}.d"
+    path: "{{ ansible_user_dir }}/.config/{{ proc_name }}.d"
     state: directory
 
 - name: Place proc starter
   copy:
-    src: "{{ proc_name }}.sh"
-    dest: "{{ ansible_user_dir }}/.{{ proc_name }}.sh"
+    src: "home/.local/bin/{{ proc_name }}.sh"
+    dest: "{{ ansible_user_dir }}/.local/bin/{{ proc_name }}.sh"
     mode: u=rwx,g=r--,o=r--
-
-- name: Populate folder
-  copy:
-    src: "{{ item }}"
-    dest: "{{ ansible_user_dir }}/.{{ proc_name }}.d/{{ item | ansible.builtin.basename }}"
-    mode: u=rwx,g=r--,o=r--
-  with_fileglob:
-    - "{{ proc_name }}.d/*.sh"

@@ -1,12 +1,3 @@
-python_packages:
-  - pip
-  - wheel
-  - setuptools
-  - ansible
-  - ansible-lint
-  - awscli
-  - mitogen
-  - ara[server]
 node_packages:
   - "@angular/cli"
   - "@prettier/plugin-xml"

@@ -1,20 +1,21 @@
+---
 tools:
-  ollama: latest
   awscli: latest
   direnv: latest
   dotnet-core: latest
   golang: latest
   gradle: latest
   helm: latest
+  java: adoptopenjdk-21
   jq: latest
   k3d: latest
   kubectl: latest
   maven: latest
   nodejs: latest
-  python: '3.12' # https://github.com/asdf-community/asdf-python/issues/191
+  ollama: latest
   ruby: latest
+  rust: stable
   shellcheck: latest
   shfmt: latest
   terraform: latest
-  java: adoptopenjdk-21
-  rust: stable
+  uv: latest

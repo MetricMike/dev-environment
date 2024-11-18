@@ -2,8 +2,8 @@
 
 # shellcheck disable=SC1090
 
-if [[ -d "${HOME}/.shutdown.d" ]]; then
-  for i in "${HOME}"/.shutdown.d/*.sh; do
+if [[ -d "${HOME}/.config/startup.d" ]]; then
+  for i in "${HOME}"/.config/startup.d/*.sh; do
     if [ -r "${i}" ]; then
       . "${i}"
     fi

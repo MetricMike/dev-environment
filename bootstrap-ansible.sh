@@ -4,8 +4,7 @@
 # This script should be idempotent and safe to run multiple times
 
 # Enable universe/restricted/multiverse repos
-RELEASE=$(lsb_release -sc)
-sudo add-apt-repository -y "${RELEASE} universe restricted multiverse"
+sudo add-apt-repository -y universe restricted multiverse
 
 # Enable gh cli repo
 (type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) &&
@@ -44,19 +43,8 @@ else
   git clone https://github.com/asdf-vm/asdf.git "${HOME}/.asdf"
 fi
 
-# I don't know and I don't care to learn how to do multiline grep search/replace
-# so I'm just stealing from the /etc/profile & /etc/profile.d strategy
-rm -rf "${HOME}/.startup.d"
-mkdir -p "${HOME}/.startup.d"
-rm -rf "${HOME}/.shutdown.d"
-mkdir -p "${HOME}/.shutdown.d"
-
 # cp /mnt/i/Users/Michael/Dropbox/mkey_big "${HOME}/.ssh/id_rsa" ; chmod 0600 "${HOME}/.ssh/id_rsa"
 # cp /mnt/i/Users/Michael/Dropbox/mkey_big.pub "${HOME}/.ssh/id_rsa.pub"
-
-cp -r ./roles/languages/files/startup.d/01_asdf.sh "${HOME}/.startup.d/"
-cp -r ./roles/languages/files/startup.sh "${HOME}/.startup.sh"
-cp -r ./roles/languages/files/shutdown.sh "${HOME}/.shutdown.sh"
 
 # match whole line, if it doesn't exist, add to end
 add_if_not_present() {
@@ -78,9 +66,11 @@ del_if_present() {
 
 procs=(startup shutdown)
 for proc_name in "${procs[@]}"; do
-  del_if_present "${proc_name}.sh" "${HOME}/.bashrc"
-  add_if_not_present ". ${HOME}/.${proc_name}.sh" "${HOME}/.bashrc"
+  add_if_not_present ". ${HOME}/.local/bin/${proc_name}.sh" "${HOME}/.bashrc"
+  rm -rf "${HOME}/.config/${proc_name}.d"
+  mkdir -p "${HOME}/.config/${proc_name}.d"
 done
+cp -a ./roles/languages/files/home/. "${HOME}/"
 
 echo "${USER} ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/no-prompt-${USER}-for-sudo"
 
@@ -110,19 +100,21 @@ sudo apt -y install \
   xz-utils \
   zlib1g-dev
 
+# Install UV
+asdf plugin-add uv
+asdf install uv latest
+asdf global uv latest
+asdf reshim uv
+
+# Install Python
+uv python install
+
+# Create/Activate default venv
+uv venv "${HOME}/.venv"
+. "${HOME}/.venv/bin/activate"
+uv sync
+
 . "${HOME}/.bashrc"
-
-asdf plugin-add python
-asdf install python latest:3.12
-asdf global python latest:3.12
-asdf reshim python
-
-# Update pip components first
-pip install -U \
-  ansible \
-  pip \
-  setuptools \
-  wheel
 
 # Verify
 ansible --version

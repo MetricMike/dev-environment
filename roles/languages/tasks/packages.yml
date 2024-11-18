@@ -4,12 +4,6 @@
 - name: Update system packages
   ansible.builtin.command: "{{ ansible_user_dir }}/.local/bin/{{ ansible_pkg_mgr }}_updater.sh"
 
-- name: Install python packages
-  pip:
-    name: "{{ python_packages }}"
-    state: latest
-  when: python_packages is iterable
-
 # List support - https://github.com/ansible-collections/community.general/issues/5421
 - name: Install node packages
   npm:
@@ -18,8 +12,7 @@
     state: latest
   loop: "{{ node_packages | default([]) }}"
 
-- name: Reshim node and python after package installs
+- name: Reshim node after package installs
   shell: /bin/bash -lc "asdf reshim {{ item }}"
   loop:
-    - python
     - nodejs

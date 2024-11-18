@@ -1,8 +1,0 @@
-pip
-wheel
-setuptools
-ansible
-ansible-lint
-awscli
-mitogen
-ara[server]
