@@ -13,3 +13,6 @@ dependencies = [
   "ara[server]",
   "ruff",
 ]
+
+[tool.uv]
+environments = ["platform_system != 'Windows'"]
