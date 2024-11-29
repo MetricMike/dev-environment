@@ -1,6 +1,6 @@
 ---
 - name: Silence login motd
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.hushlogin"
     state: touch
 

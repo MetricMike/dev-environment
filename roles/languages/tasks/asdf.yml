@@ -13,21 +13,23 @@
   failed_when: false
 
 - name: Update ASDF plugins
-  shell: /bin/bash -lc 'asdf plugin update --all'
+  ansible.builtin.shell: /bin/bash -lc 'asdf plugin update --all'
 
 - name: "Ensure local bin directory exists"
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
+    mode: u=rwx,g=r-x,o=r-x
   loop:
     - "{{ ansible_user_dir }}/.local/bin"
 
 - name: Add extra commands
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}.sh"
     dest: "{{ ansible_user_dir }}/.local/bin/{{ item }}"
     mode: u=rwx,g=r-x,o=r-x
   loop:
     - asdf-prune
 
-- include_tasks: asdf_plugins.yml
+- name: Update ASDF plugins
+  ansible.builtin.include_tasks: asdf_plugins.yml

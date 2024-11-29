@@ -1,16 +1,17 @@
 ---
 - name: Empty folder
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.config/{{ proc_name }}.d"
     state: absent
 
 - name: Reset folder
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.config/{{ proc_name }}.d"
     state: directory
+    mode: u=rwx,g=r-x,o=r-x
 
 - name: Place proc starter
-  copy:
+  ansible.builtin.copy:
     src: "home/.local/bin/{{ proc_name }}.sh"
     dest: "{{ ansible_user_dir }}/.local/bin/{{ proc_name }}.sh"
     mode: u=rwx,g=r--,o=r--

@@ -1,6 +1,6 @@
 ---
 - include_tasks:
-    file: "{{ task_item }}.yml"
+    ansible.builtin.file: "{{ task_item }}.yml"
   loop:
     - env
     - git
