@@ -40,5 +40,4 @@
         ansible_failed_result.stderr is search("\.asdf/downloads/" ~ asdf_plugin ~ "/" ~ asdf_plugin_latest_version)
 
     - name: Retry
-      ansible.builtin.include_tasks:
-        ansible.builtin.file: asdf_update_plugin.yml
+      ansible.builtin.include_tasks: asdf_update_plugin.yml
