@@ -1,5 +1,6 @@
 ---
-- ansible.builtin.include_tasks: "{{ task_item }}.yml"
+- name: "Including tasks for {{ task_item }}"
+  ansible.builtin.include_tasks: "{{ task_item }}.yml"
   loop:
     - env
     - git
@@ -14,5 +15,5 @@
 
 # Must run at the end so we don't remove existing tools before we're done
 - name: Remove older asdf versions
-  shell: /bin/bash -lc "asdf-prune"
+  ansible.builtin.shell: /bin/bash -lc "asdf-prune"
   failed_when: false

@@ -3,6 +3,7 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
+    mode: u=rwx,g=r-x,o=r-x
   loop:
     - "{{ ansible_user_dir }}/.local/share/bash-completion"
 

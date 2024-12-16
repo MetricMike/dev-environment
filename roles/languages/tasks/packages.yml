@@ -6,13 +6,13 @@
 
 # List support - https://github.com/ansible-collections/community.general/issues/5421
 - name: Install node packages
-  npm:
+  community.general.npm:
     name: "{{ item }}"
     global: true
     state: latest
   loop: "{{ node_packages | default([]) }}"
 
 - name: Reshim node after package installs
-  shell: /bin/bash -lc "asdf reshim {{ item }}"
+  ansible.builtin.shell: /bin/bash -lc "asdf reshim {{ item }}"
   loop:
     - nodejs

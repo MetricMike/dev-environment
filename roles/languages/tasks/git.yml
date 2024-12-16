@@ -1,6 +1,6 @@
 ---
 - name: Config
-  git_config:
+  community.general.git_config:
     name: "{{ item.0.key }}.{{ item.1.keys() | list | first }}"
     scope: global
     value: "{{ item.1.values() | list | first }}"
@@ -9,6 +9,7 @@
 - name: Signing
   ansible.builtin.lineinfile:
     create: true
+    mode: u=rw-,o=r--,g=r--
     path: "{{ ansible_user_dir }}/.config/git/allowed_signers"
     regexp: "^michael.weigle@gmail.com"
     line: 'michael.weigle@gmail.com namespaces="git" {{ lookup(''url'', ''https://github.com/metricmike.keys'', split_lines=False) }}'
