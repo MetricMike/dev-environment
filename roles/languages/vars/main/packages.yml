@@ -1,7 +1,36 @@
-node_packages:
-  - "@angular/cli"
-  - "@prettier/plugin-xml"
-  - diff-so-fancy
-  - mapshaper
-  - typescript
-  - yarn
+---
+languages_system_packages:
+  debian: &debian
+    default: &debian_default
+      - podman
+      - autoconf
+      - bash-completion
+      - bison
+      - build-essential
+      - curl
+      - gettext
+      - gh
+      - git
+      - libgd-dev
+      - libcurl4-openssl-dev
+      - libedit-dev
+      - libicu-dev
+      - libjpeg-dev
+      - libmysqlclient-dev
+      - libonig-dev
+      - libpng-dev
+      - libpq-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - libxml2-dev
+      - libzip-dev
+      - locate
+      - openssl
+      - pkg-config
+      - re2c
+      - zlib1g-dev
+  ubuntu:
+    <<: *debian
+    "22": *debian_default
+    "24": *debian_default

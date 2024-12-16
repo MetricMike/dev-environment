@@ -15,9 +15,18 @@
   args:
     creates: "{{ ansible_user_dir }}/.venv"
 
-- name: Set stable path for JAVA_HOME for other consumers (vscode-java)
-  ansible.builtin.shell: /bin/bash -lc "ln -snf $(asdf where java) ${HOME}/java_home"
+- name: Get ASDF Java directory
+  ansible.builtin.command: "asdf where java"
+  register: asdf_where_java
+  changed_when: false
 
-- name: Install/activate latest Powershell
-  ansible.builtin.shell: /bin/bash -lc "dotnet tool install --global PowerShell"
-  failed_when: false
+- name: Set stable path for JAVA_HOME for other consumers (vscode-java)
+  ansible.builtin.file:
+    src: "{{ asdf_where_java.stdout }}"
+    dest: "{{ ansible_user_dir }}/java_home"
+    state: link
+    force: true
+
+# Not quite sure how to parse this one so Ansible can skip it
+- name: Install/activate latest Powershell # noqa: no-changed-when
+  ansible.builtin.command: "dotnet tool install --global PowerShell"

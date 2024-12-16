@@ -1,8 +1,9 @@
 ---
 tools:
   awscli: latest
+  bitwarden-secrets-manager: latest
   direnv: latest
-  dotnet-core: latest
+  dotnet: 8
   golang: latest
   gradle: latest
   helm: latest

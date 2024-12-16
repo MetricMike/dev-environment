@@ -1,18 +1,30 @@
 ---
+- name: Update/clean/full-upgrade
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 86400
+    autoclean: true
+    autoremove: true
+    purge: true
+    upgrade: full
+  become: true
+  when: ansible_pkg_mgr == "apt"
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
 
-# Ansible & Mitogen don't play well with APT when not using the system python... so don't use the apt module
+- name: Add additional system packages
+  ansible.builtin.package:
+    name: "{{ languages_system_packages[ansible_distribution | lower][ansible_distribution_major_version] }}"
+    state: present
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+# I'm okay with the potential tradeoff of instability for being on the edge
 - name: Update system packages
-  ansible.builtin.command: "{{ ansible_user_dir }}/.local/bin/{{ ansible_pkg_mgr }}_updater.sh"
-
-# List support - https://github.com/ansible-collections/community.general/issues/5421
-- name: Install node packages
-  community.general.npm:
-    name: "{{ item }}"
-    global: true
-    state: latest
-  loop: "{{ node_packages | default([]) }}"
-
-- name: Reshim node after package installs
-  ansible.builtin.shell: /bin/bash -lc "asdf reshim {{ item }}"
-  loop:
-    - nodejs
+  ansible.builtin.apt:
+    name: "*"
+    state: latest # noqa: package-latest
+  become: true
+  when: ansible_pkg_mgr == "apt"
+  vars:
+    ansible_python_interpreter: /usr/bin/python3

@@ -1,6 +1,6 @@
 ---
 - name: Update ASDF
-  ansible.builtin.shell: /bin/bash -lc 'asdf update'
+  ansible.builtin.shell: /bin/bash -lic 'asdf update'
 # TODO: skip if updated today
 
 - name: Get current ASDF plugins
@@ -13,7 +13,7 @@
   failed_when: false
 
 - name: Update ASDF plugins
-  ansible.builtin.shell: /bin/bash -lc 'asdf plugin update --all'
+  ansible.builtin.shell: /bin/bash -lic 'asdf plugin update --all'
 
 - name: "Ensure local bin directory exists"
   ansible.builtin.file:

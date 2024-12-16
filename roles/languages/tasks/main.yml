@@ -15,5 +15,5 @@
 
 # Must run at the end so we don't remove existing tools before we're done
 - name: Remove older asdf versions
-  ansible.builtin.shell: /bin/bash -lc "asdf-prune"
+  ansible.builtin.shell: /bin/bash -lic "asdf-prune"
   failed_when: false

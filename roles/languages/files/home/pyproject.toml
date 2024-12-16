@@ -3,15 +3,16 @@ name = "default"
 version = "2024.11.17"
 requires-python = ">=3.13"
 dependencies = [
-  "pip",
-  "wheel",
-  "setuptools",
-  "ansible",
   "ansible-lint",
-  "awscli",
-  "mitogen",
+  "ansible",
   "ara[server]",
+  "awscli",
+  "gnureadline",
+  "mitogen",
+  "pip",
   "ruff",
+  "setuptools",
+  "wheel",
 ]
 
 [tool.uv]
