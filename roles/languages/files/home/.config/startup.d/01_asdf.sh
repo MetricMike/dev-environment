@@ -10,7 +10,7 @@ export JAVA_HOME="${ASDF_JAVA_HOME}"
 export JDK_HOME="${JAVA_HOME}"
 
 # .NET
-. "${HOME}/.asdf/plugins/dotnet-core/set-dotnet-home.bash"
+. "${HOME}/.asdf/plugins/dotnet/set-dotnet-env.bash"
 pathmunge "${HOME}/.dotnet/tools" after
 
 # DirEnv
