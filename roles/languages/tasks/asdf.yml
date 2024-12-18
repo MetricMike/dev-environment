@@ -1,7 +1,19 @@
 ---
-- name: Update ASDF
-  ansible.builtin.shell: /bin/bash -lic 'asdf update'
-# TODO: skip if updated today
+- name: Get latest release of ASDF
+  community.general.github_release:
+    user: asdf-vm
+    repo: asdf
+    action: latest_release
+  register: asdf_latest_release
+  delegate_to: localhost # https://github.com/mitogen-hq/mitogen/issues/1011
+
+# TODO: once 0.16.0 gets released I'll need to switch to a binary download
+# similar to https://brunopaz.dev/blog/how-to-keep-software-installed-from-github-updated-with-ansible/
+- name: Clone ASDF is updated to the latest stable release
+  ansible.builtin.git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: "{{ ansible_user_dir }}/.asdf"
+    version: "{{ asdf_latest_release.tag }}"
 
 - name: Get current ASDF plugins
   ansible.builtin.command: asdf plugin list
