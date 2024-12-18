@@ -1,6 +1,14 @@
 "@angular/cli"
+"@prettier/plugin-ruby"
 "@prettier/plugin-xml"
+prettier-plugin-erb
+prettier-plugin-java
+prettier-plugin-jinja-template
+prettier-plugin-nginx
+prettier-plugin-properties
+prettier-plugin-sh
+prettier-plugin-sql-cst
+prettier-plugin-toml
 diff-so-fancy
-mapshaper
 typescript
 yarn
