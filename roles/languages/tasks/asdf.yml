@@ -23,13 +23,5 @@
   loop:
     - "{{ ansible_user_dir }}/.local/bin"
 
-- name: Add extra commands
-  ansible.builtin.copy:
-    src: "{{ item }}.sh"
-    dest: "{{ ansible_user_dir }}/.local/bin/{{ item }}"
-    mode: u=rwx,g=r-x,o=r-x
-  loop:
-    - asdf-prune
-
 - name: Update ASDF plugins
   ansible.builtin.include_tasks: asdf_plugins.yml
