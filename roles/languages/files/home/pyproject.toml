@@ -6,7 +6,6 @@ dependencies = [
   "ansible-lint",
   "ansible",
   "ara[server]",
-  "awscli",
   "github3.py",
   "gnureadline",
   "mitogen",
