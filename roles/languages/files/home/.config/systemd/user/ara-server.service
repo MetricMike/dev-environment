@@ -3,7 +3,7 @@ Description=ARA Server
 After=network-online.target
 
 [Service]
-ExecStart=/home/metricmike/.venv/bin/ara-manage runserver
+ExecStart=/home/metricmike/.asdf/shims/ara-manage runserver
 
 [Install]
 WantedBy=default.target

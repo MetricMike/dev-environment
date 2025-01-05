@@ -14,4 +14,5 @@ export JDK_HOME="${JAVA_HOME}"
 pathmunge "${HOME}/.dotnet/tools" after
 
 # DirEnv
-asdf direnv setup --shell bash --version latest &>/dev/null
+export DIRENV_LOG_FORMAT=
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"

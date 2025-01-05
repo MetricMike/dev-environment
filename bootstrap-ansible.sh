@@ -100,29 +100,36 @@ sudo apt -y install \
   xz-utils \
   zlib1g-dev
 
-# Install UV
-asdf plugin-add uv
-asdf install uv latest
-asdf global uv latest
-asdf reshim uv
-
 # Install Python
-uv python install
+asdf plugin-add python
+asdf install python latest:3.12
+asdf global python latest:3.12
+asdf reshim python
 
-# Create/Activate default venv
-uv venv "${HOME}/.venv"
-. "${HOME}/.venv/bin/activate"
-uv sync
+# Update pip components first
+pip install --upgrade \
+  pip \
+  setuptools \
+  wheel
+
+# Update pip/ansible packages
+pip install --upgrade \
+  ansible \
+  ansible-lint \
+  "ara[server]" \
+  github3.py \
+  gnureadline \
+  mitogen
+
+# Redirect ansible plugins to well-known location
+. ./roles/languages/files/home/.config/startup.d/50_ansible.sh
 
 . "${HOME}/.bashrc"
 
 # Verify
 ansible --version
 
-ansible-playbook developer.yml
+# Ansible-Bootstrap!
+apd
 
 echo -e "\nFinished bootstrapping."
-
-unset PROMPT_COMMAND
-
-. "${HOME}/.bashrc"

@@ -14,9 +14,9 @@ tools:
   maven: latest
   nodejs: latest
   ollama: latest
+  python: 3.12
   ruby: latest
   rust: stable
   shellcheck: latest
   shfmt: latest
   terraform: latest
-  uv: latest

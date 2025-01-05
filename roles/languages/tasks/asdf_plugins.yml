@@ -7,14 +7,6 @@
   loop_control:
     loop_var: asdf_plugin
 
-- name: Update Python with UV
-  ansible.builtin.command: uv python install
-
-- name: Create default VENV
-  ansible.builtin.command: "uv venv {{ ansible_user_dir }}/.venv"
-  args:
-    creates: "{{ ansible_user_dir }}/.venv"
-
 - name: Get ASDF Java directory
   ansible.builtin.command: "asdf where java"
   register: asdf_where_java
