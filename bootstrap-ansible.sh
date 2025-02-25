@@ -35,12 +35,16 @@ sudo apt --assume-yes install \
 # Add a local bin dir
 mkdir -p "${HOME}/.local/bin"
 
-# Install/update ASDF
+# Install ASDF (and update plugins)
 if [[ -d "${HOME}/.asdf" ]]; then
-  asdf update
   asdf plugin update --all
 else
-  git clone https://github.com/asdf-vm/asdf.git "${HOME}/.asdf"
+  ASDF_VERSION="v0.16.0"
+  cd /tmp
+  curl -LOJ "https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/asdf-${ASDF_VERSION}-linux-amd64.tar.gz"
+  tar xzvf "asdf-${ASDF_VERSION}-linux-amd64.tar.gz"
+  mv asdf "${HOME}/.local/bin/"
+  cd -
 fi
 
 # cp /mnt/i/Users/Michael/Dropbox/mkey_big "${HOME}/.ssh/id_rsa" ; chmod 0600 "${HOME}/.ssh/id_rsa"
@@ -101,9 +105,10 @@ sudo apt -y install \
   zlib1g-dev
 
 # Install Python
-asdf plugin-add python
+asdf plugin remove python
+asdf plugin add python
 asdf install python latest:3.12
-asdf global python latest:3.12
+asdf set --home python latest:3.12
 asdf reshim python
 
 # Update pip components first

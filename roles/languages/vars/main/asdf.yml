@@ -3,18 +3,18 @@ tools:
   awscli: latest
   bitwarden-secrets-manager: latest
   direnv: latest
-  dotnet: 8
+  dotnet: 9
   golang: latest
-  gradle: latest
+  gradle: 8
   helm: latest
   java: adoptopenjdk-21
   jq: latest
   k3d: latest
   kubectl: latest
   maven: latest
-  nodejs: latest
+  # nodejs: latest # https://github.com/asdf-vm/asdf/issues/1948
   ollama: latest
-  python: 3.12
+  # python: 3.12 # https://github.com/asdf-vm/asdf/issues/1948
   ruby: latest
   rust: stable
   shellcheck: latest

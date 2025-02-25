@@ -7,13 +7,11 @@
   register: asdf_latest_release
   delegate_to: localhost # https://github.com/mitogen-hq/mitogen/issues/1011
 
-# TODO: once 0.16.0 gets released I'll need to switch to a binary download
-# similar to https://brunopaz.dev/blog/how-to-keep-software-installed-from-github-updated-with-ansible/
-- name: Clone ASDF is updated to the latest stable release
-  ansible.builtin.git:
-    repo: https://github.com/asdf-vm/asdf.git
-    dest: "{{ ansible_user_dir }}/.asdf"
-    version: "{{ asdf_latest_release.tag }}"
+- name: Download Binary
+  ansible.builtin.unarchive:
+    src: "https://github.com/asdf-vm/asdf/releases/download/{{ asdf_latest_release.tag }}/asdf-{{ asdf_latest_release.tag }}-linux-amd64.tar.gz"
+    dest: "{{ ansible_user_dir }}/.local/bin/"
+    remote_src: true
 
 - name: Get current ASDF plugins
   ansible.builtin.command: asdf plugin list
@@ -25,7 +23,7 @@
   failed_when: false
 
 - name: Update ASDF plugins
-  ansible.builtin.shell: /bin/bash -lic 'asdf plugin update --all'
+  ansible.builtin.command: 'asdf plugin update --all'
 
 - name: "Ensure local bin directory exists"
   ansible.builtin.file:

@@ -26,7 +26,7 @@
 
     # TODO: detect if asdf_plugin_latest_version is in tool version OR re-run asdf current?
     - name: "Activate latest version ({{ asdf_plugin.name }})" # noqa: no-handler
-      ansible.builtin.command: "asdf global {{ asdf_plugin.name }} {{ asdf_plugin_latest_version }}"
+      ansible.builtin.command: "asdf set --home {{ asdf_plugin.name }} {{ asdf_plugin_latest_version }}"
       changed_when: true
       when: asdf_install.changed
 

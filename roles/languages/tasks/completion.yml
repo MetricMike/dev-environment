@@ -7,11 +7,16 @@
   loop:
     - "{{ ansible_user_dir }}/.local/share/bash-completion"
 
+- name: Get ASDF Bash completions
+  ansible.builtin.command: "asdf completion bash"
+  register: asdf_completion_bash
+  changed_when: false
+
 - name: Install asdf completions
-  ansible.builtin.file:
-    src: "{{ ansible_user_dir }}/.asdf/completions/asdf.bash"
+  ansible.builtin.copy:
+    content: asdf_completion_bash.stdout
     dest: "{{ ansible_user_dir }}/.local/share/bash-completion/asdf.bash"
-    state: link
+    mode: u=rwx,g=r--,o=---
 
 - name: Install gradle completions
   ansible.builtin.get_url:

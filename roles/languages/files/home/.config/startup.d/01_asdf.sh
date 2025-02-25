@@ -2,7 +2,8 @@
 
 # shellcheck disable=SC1091
 
-. "${HOME}/.asdf/asdf.sh"
+export ASDF_DATA_DIR="${HOME}/.asdf"
+pathmunge "${ASDF_DATA_DIR}/shims"
 
 # Java
 ASDF_JAVA_HOME=$(asdf where java)
