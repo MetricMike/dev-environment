@@ -75,6 +75,7 @@ for proc_name in "${procs[@]}"; do
   mkdir -p "${HOME}/.config/${proc_name}.d"
 done
 cp -a ./roles/languages/files/home/. "${HOME}/"
+. "${HOME}/.bashrc"
 
 echo "${USER} ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/no-prompt-${USER}-for-sudo"
 
@@ -125,6 +126,8 @@ pip install --upgrade \
   github3.py \
   gnureadline \
   mitogen
+
+asdf reshim python
 
 # Redirect ansible plugins to well-known location
 . ./roles/languages/files/home/.config/startup.d/50_ansible.sh
