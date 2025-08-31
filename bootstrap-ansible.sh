@@ -39,7 +39,7 @@ mkdir -p "${HOME}/.local/bin"
 if [[ -d "${HOME}/.asdf" ]]; then
   asdf plugin update --all
 else
-  ASDF_VERSION="v0.16.0"
+  ASDF_VERSION="v0.18.0"
   cd /tmp
   curl -LOJ "https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/asdf-${ASDF_VERSION}-linux-amd64.tar.gz"
   tar xzvf "asdf-${ASDF_VERSION}-linux-amd64.tar.gz"
