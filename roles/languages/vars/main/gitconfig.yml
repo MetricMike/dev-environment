@@ -27,4 +27,4 @@ git:
   user:
     - name: Michael Weigle
     - email: michael.weigle@gmail.com
-    - signingkey: ~/.ssh/id_rsa
+    - signingkey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYV3kfSEB8XzoVd718eQo5YnEwrZvebrS9tSkv8quHn

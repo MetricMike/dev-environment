@@ -29,6 +29,7 @@ languages_system_packages:
       - openssl
       - pkg-config
       - re2c
+      - openssh-server
       - zlib1g-dev
   ubuntu:
     <<: *debian

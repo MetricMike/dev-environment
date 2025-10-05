@@ -13,9 +13,10 @@
     ansible_python_interpreter: /usr/bin/python3
 
 - name: Add additional system packages
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name: "{{ languages_system_packages[ansible_distribution | lower][ansible_distribution_major_version] }}"
     state: present
+  become: true
   vars:
     ansible_python_interpreter: /usr/bin/python3
 

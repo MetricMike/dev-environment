@@ -1,7 +1,8 @@
 ---
-- name: "Including tasks for {{ task_item }}"
+- name: "Including tasks for {{ item }}"
   ansible.builtin.include_tasks: "{{ task_item }}.yml"
   loop:
+    - sshd
     - env
     - git
     - prompt

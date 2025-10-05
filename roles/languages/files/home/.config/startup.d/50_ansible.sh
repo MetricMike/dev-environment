@@ -10,6 +10,7 @@ export ANSIBLE_STRATEGY_PLUGINS="${HOME}/.ansible/plugins/strategy:/usr/share/an
 
 apd() {
   cd "${HOME}/projects/dev-environment" || exit
+  ansible-galaxy install --role-file requirements.yml
   ansible-playbook developer.yml
   cd - || exit
   # shellcheck disable=SC1091

@@ -1,0 +1,33 @@
+---
+- name: Set authorized key taken from file
+  ansible.posix.authorized_key:
+    user: metricmike
+    state: present
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHoIpJKaRkWiQ9jXwBtj306v2ZJb9fNfQnMH2Pk3twwe"
+
+- name: SSHD Setup
+  avryez.sshd_config_manager.update_sshd_config:
+    max_auth_tries: 3
+    permit_root_login: "no"
+    password_authentication: false
+    pubkey_authentication: true
+    protocol: 2
+    port: 2222
+    x11_forwarding: true
+    allow_tcp_forwarding: true
+    allow_agent_forwarding: true
+    client_alive_interval: 300
+    client_alive_count_max: 2
+    max_sessions: 2
+    allow_users: "metricmike"
+  become: true
+
+- name: Restart ssh units
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    name: "{{ item }}"
+    state: restarted
+  become: true
+  loop:
+    - ssh.service
+    - ssh.socket

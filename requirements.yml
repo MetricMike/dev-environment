@@ -1,0 +1,4 @@
+---
+roles:
+collections:
+  - name: avryez.sshd_config_manager

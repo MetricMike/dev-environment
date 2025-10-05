@@ -47,9 +47,6 @@ else
   cd -
 fi
 
-# cp /mnt/i/Users/Michael/Dropbox/mkey_big "${HOME}/.ssh/id_rsa" ; chmod 0600 "${HOME}/.ssh/id_rsa"
-# cp /mnt/i/Users/Michael/Dropbox/mkey_big.pub "${HOME}/.ssh/id_rsa.pub"
-
 # match whole line, if it doesn't exist, add to end
 add_if_not_present() {
   local line file
@@ -80,7 +77,7 @@ cp -a ./roles/languages/files/home/. "${HOME}/"
 echo "${USER} ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/no-prompt-${USER}-for-sudo"
 
 # Build environment for python
-sudo apt -y install \
+sudo apt --assume-yes install \
   autoconf \
   bison \
   build-essential \

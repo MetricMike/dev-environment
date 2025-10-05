@@ -2,7 +2,7 @@
 - name: Developer
   hosts: localhost
   tasks:
-    - name: "{{ role_item }}"
+    - name: Including roles
       ansible.builtin.include_role:
         name: "{{ role_item }}"
       loop:
