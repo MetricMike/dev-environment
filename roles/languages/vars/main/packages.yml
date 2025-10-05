@@ -35,3 +35,8 @@ languages_system_packages:
     <<: *debian
     "22": *debian_default
     "24": *debian_default
+cargo:
+  source:
+    - cargo-binstall
+  binaries:
+    - hanko

@@ -6,10 +6,5 @@
     value: "{{ item.1.values() | list | first }}"
   loop: "{{ git | dict2items | subelements('value') }}"
 
-- name: Signing
-  ansible.builtin.lineinfile:
-    create: true
-    mode: u=rw-,o=r--,g=r--
-    path: "{{ ansible_user_dir }}/.config/git/allowed_signers"
-    regexp: "^michael.weigle@gmail.com"
-    line: 'michael.weigle@gmail.com namespaces="git" {{ lookup(''url'', ''https://github.com/metricmike.keys'', split_lines=False) }}'
+- name: Update allowed signers
+  ansible.builtin.command: 'hanko update'
