@@ -2,7 +2,6 @@
 tools:
   awscli: latest
   bitwarden-secrets-manager: latest
-  direnv: latest
   dotnet: 9
   golang: latest
   gradle: 8
