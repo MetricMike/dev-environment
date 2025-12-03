@@ -29,3 +29,12 @@
   when: ansible_pkg_mgr == "apt"
   vars:
     ansible_python_interpreter: /usr/bin/python3
+
+- name: Update rust/cargo packages
+  community.general.cargo:
+    name: "{{ cargo.sources + cargo.binaries }}"
+
+- name: Reshim after using a package manager under asdf
+  ansible.builtin.command: "asdf reshim {{ item }}"
+  loop:
+    - rust

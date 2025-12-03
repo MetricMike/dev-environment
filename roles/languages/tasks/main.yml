@@ -4,12 +4,14 @@
   loop:
     - sshd
     - env
+    - packages
     - git
     - prompt
     - wsl
     - asdf
-    - packages
     - completion
     - systemd
   loop_control:
     loop_var: task_item
+
+# Hrm, need to split asdf up so it can run before git for hanko/signers
