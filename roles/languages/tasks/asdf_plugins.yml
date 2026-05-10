@@ -7,18 +7,19 @@
   loop_control:
     loop_var: asdf_plugin
 
-- name: Get ASDF Java directory
-  ansible.builtin.command: "asdf where java"
-  register: asdf_where_java
-  changed_when: false
+# - name: Get ASDF Java directory
+#   ansible.builtin.command: "asdf where java"
+#   register: asdf_where_java
+#   changed_when: false
 
-- name: Set stable path for JAVA_HOME for other consumers (vscode-java)
-  ansible.builtin.file:
-    src: "{{ asdf_where_java.stdout }}"
-    dest: "{{ ansible_user_dir }}/java_home"
-    state: link
-    force: true
+# - name: Set stable path for JAVA_HOME for other consumers (vscode-java)
+#   ansible.builtin.file:
+#     src: "{{ asdf_where_java.stdout }}"
+#     dest: "{{ ansible_user_dir }}/java_home"
+#     state: link
+#     force: true
 
 # Not quite sure how to parse this one so Ansible can skip it
 - name: Install/activate latest Powershell # noqa: no-changed-when
   ansible.builtin.command: "dotnet tool install --global PowerShell"
+  failed_when: false

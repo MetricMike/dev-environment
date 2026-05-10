@@ -4,7 +4,7 @@
 
 if [[ "${TERM_PROGRAM}" == "vscode" ]]; then
   . "$(code --locate-shell-integration-path bash)"
-  export EDITOR=code
+  export EDITOR="code --wait"
 else
   export EDITOR=vim
 fi
