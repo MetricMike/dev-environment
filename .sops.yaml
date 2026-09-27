@@ -1,0 +1,3 @@
+creation_rules:
+  - age:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHoIpJKaRkWiQ9jXwBtj306v2ZJb9fNfQnMH2Pk3twwe metricmike@MTOWER

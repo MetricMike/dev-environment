@@ -11,3 +11,6 @@ pathmunge "${ASDF_DATA_DIR}/shims"
 # .NET
 . "${HOME}/.asdf/plugins/dotnet/set-dotnet-env.bash"
 pathmunge "${HOME}/.dotnet/tools" after
+
+# NodeJS
+export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_installed
