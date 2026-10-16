@@ -15,3 +15,62 @@
     src: "home/.local/bin/{{ proc_name }}.sh"
     dest: "{{ ansible_user_dir }}/.local/bin/{{ proc_name }}.sh"
     mode: u=rwx,g=r--,o=r--
+
+# - name: Create directories
+#   ansible.builtin.file:
+#     path: "{{ ansible_facts['user_dir'] }}/.local/ansible/group/{{ item.path }}"
+#     state: directory
+#   with_community.general.filetree:
+#     - "{{ role_path }}/files/home/"
+#     - "{{ role_path }}/templates/home/"
+#   loop_control:
+#     label: "{{ item.path }}"
+#   when: item.state == "directory"
+
+# - name: Render templates
+#   ansible.builtin.template:
+#     src: "{{ item.src }}"
+#     dest: "{{ ansible_facts['user_dir'] }}/.local/ansible/group/{{ item.path | splitext | first }}"
+#   with_community.general.filetree:
+#     - "{{ role_path }}/templates/home/"
+#   loop_control:
+#     label: "{{ item.path }}"
+#   when: item.state == "file"
+#   register: group_managed_templates
+
+# - name: Synchronize files
+#   ansible.posix.synchronize:
+#     src: "{{ role_path }}/files/home/"
+#     dest: "{{ ansible_facts['user_dir'] }}/.local/ansible/group/"
+#     recursive: true
+#     delete: true
+#     checksum: true
+#     rsync_opts: >-
+#       {{
+#         group_managed_templates.results
+#         | selectattr('dest', 'defined')
+#         | map(attribute='dest')
+#         | map('regex_replace', '^' ~ ansible_facts['user_dir'] ~ '/.local/ansible/group/', '')
+#         | map('regex_replace', '^', '--exclude=')
+#         | list
+#       }}
+  
+# - name: Register symlinks
+#   ansible.builtin.set_fact:
+#     group_symlinks:
+#       - { source: ".config", destination: ".config/group" }
+#       - { source: ".config/group.file", destination: ".config/group.file" }
+
+# - name: Ensure symlink destination parents exist
+#   ansible.builtin.file:
+#     path: "{{ ansible_facts['user_dir'] }}/{{ item.destination | dirname }}"
+#     state: directory
+#   loop: "{{ group_symlinks }}"
+
+# - name: Symlink folders
+#   ansible.builtin.file:
+#     src: "{{ ansible_facts['user_dir'] }}/.local/ansible/group/{{ item.source }}"
+#     dest: "{{ ansible_facts['user_dir'] }}/{{ item.destination }}"
+#     state: link
+#     force: true
+#   loop: "{{ group_symlinks }}"
